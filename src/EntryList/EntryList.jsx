@@ -4,7 +4,7 @@ import { db } from "../firebase";
 import Entry from "../Entry/Entry";
 import "./EntryList.css";
 
-const EntryList = ({}) => {
+const EntryList = () => {
   const [entries, setEntries] = useState([]);
   const [allEntries, setAllEntries] = useState([]);
 
@@ -16,23 +16,18 @@ const EntryList = ({}) => {
           ...doc.data(),
         };
       });
-      console.log(entries);
       setEntries(entries);
       setAllEntries(entries);
     });
   };
 
   useEffect(() => {
-    console.log('fetching entries');
     fetchEntries();
   }, []);
 
   const searchEntry = (e) => {
 
-    console.log('searching entry:', e.target.value);
-
     if (!e.target.value) {
-      console.log('resetting entries:', allEntries);
       setEntries(allEntries);
       return;
     }
