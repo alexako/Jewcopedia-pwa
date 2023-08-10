@@ -4,7 +4,7 @@ import { db } from "../firebase";
 import Entry from "../Entry/Entry";
 import "./EntryList.css";
 
-const EntryList = () => {
+const EntryList = ({ setFocusedEntry }) => {
   const [entries, setEntries] = useState([]);
   const [allEntries, setAllEntries] = useState([]);
 
@@ -50,7 +50,7 @@ const EntryList = () => {
       </div>
       <div className="entry-list">
         {entries.map((entry, index) => {
-          return <Entry key={index} entry={entry} />;
+          return <Entry key={index} entry={entry} setFocusedEntry={setFocusedEntry} />;
         })}
       </div>
     </div>
