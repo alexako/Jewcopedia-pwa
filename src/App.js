@@ -12,7 +12,7 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-        <EntryList setFocusedEntry={setFocusedEntry} />
+        <EntryList focusedEntry={focusedEntry} setFocusedEntry={setFocusedEntry} />
         <div className="main">
           <Header/>
           <FocusedEntry focusedEntry={focusedEntry} />

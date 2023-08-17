@@ -6,7 +6,7 @@ import "./EntryList.css";
 import testData from "../data.json";
 
 
-const EntryList = ({ setFocusedEntry }) => {
+const EntryList = ({ focusedEntry, setFocusedEntry }) => {
   const [entries, setEntries] = useState([]);
   const [allEntries, setAllEntries] = useState([]);
 
@@ -54,10 +54,10 @@ const EntryList = ({ setFocusedEntry }) => {
       </div>
       <div className="entry-list">
         {entries.map((entry, index) => {
-          return <Entry key={index} entry={entry} setFocusedEntry={setFocusedEntry} />;
+          return <Entry key={index} entry={entry} focused={entry.id === focusedEntry.id} setFocusedEntry={setFocusedEntry} />;
         })}
         { !entries.length && (
-          <div style={{ width: "400px" }}> No entries found. </div>
+          <div style={{ width: "100%" }}> No entries found. </div>
         )}
       </div>
     </div>
