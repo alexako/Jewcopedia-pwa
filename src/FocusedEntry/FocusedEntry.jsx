@@ -5,11 +5,11 @@ const FocusedEntry = ({ focusedEntry }) => {
     <div className="focused-entry">
       {focusedEntry ? (
         <>
-          <div>{focusedEntry.firstName} {focusedEntry.lastName}</div>
-          <p>{focusedEntry.details}</p>
+          <div className="focused-entry__name">{focusedEntry.firstName} {focusedEntry.lastName}</div>
+          <div className="focused-entry__details">{focusedEntry.details}</div>
         </>
       ) : (
-        <p>No entry selected</p>
+        <div className="focused-entry__unselected">No entry selected</div>
       )}
     </div>
   );

@@ -1,8 +1,13 @@
+import "./Entry.css";
+
 const Entry = ({ entry, setFocusedEntry }) => {
   return (
     <div className="entry" onClick={() => setFocusedEntry(entry)}>
-      <h3>{entry.firstName} {entry.lastName}</h3>
-      <p>{entry.details}</p>
+      <div className="entry__avatar"><img className="entry__avatar--img" src={entry.avatar} alt=""/></div>
+      <div className="description-container">
+        <div className="entry__name">{entry.firstName} {entry.lastName}</div>
+        <div className="entry__header">{entry.details}</div>
+      </div>
     </div>
   );
 };

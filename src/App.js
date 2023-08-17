@@ -3,6 +3,7 @@ import AddEntry from './AddEntry/AddEntry';
 import EntryList from './EntryList/EntryList';
 import FocusedEntry from './FocusedEntry/FocusedEntry';
 import './App.css';
+import Header from './Header/Header';
 
 function App() {
 
@@ -10,9 +11,13 @@ function App() {
 
   return (
     <div className="App">
-      <AddEntry />
-      <EntryList setFocusedEntry={setFocusedEntry} />
-      <FocusedEntry focusedEntry={focusedEntry} />
+      <div className="container">
+        <EntryList setFocusedEntry={setFocusedEntry} />
+        <div className="main">
+          <Header/>
+          <FocusedEntry focusedEntry={focusedEntry} />
+        </div>
+      </div>
     </div>
   );
 }

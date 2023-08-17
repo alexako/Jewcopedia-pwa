@@ -3,6 +3,8 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
 import Entry from "../Entry/Entry";
 import "./EntryList.css";
+import testData from "../data.json";
+
 
 const EntryList = ({ setFocusedEntry }) => {
   const [entries, setEntries] = useState([]);
@@ -16,8 +18,10 @@ const EntryList = ({ setFocusedEntry }) => {
           ...doc.data(),
         };
       });
-      setEntries(entries);
-      setAllEntries(entries);
+      // setEntries(entries);
+      // setAllEntries(entries);
+      setEntries(testData);
+      setAllEntries(testData);
     });
   };
 
@@ -52,6 +56,9 @@ const EntryList = ({ setFocusedEntry }) => {
         {entries.map((entry, index) => {
           return <Entry key={index} entry={entry} setFocusedEntry={setFocusedEntry} />;
         })}
+        { !entries.length && (
+          <div style={{ width: "400px" }}> No entries found. </div>
+        )}
       </div>
     </div>
   );
