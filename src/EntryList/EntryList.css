@@ -26,7 +26,6 @@ input[type="text"]:focus {
   position: relative;
   padding: 1.5em;
   margin: 0 3em;
-  border-bottom: 1px solid #ebebeb;
 }
 
 .search__clear-btn {
@@ -43,4 +42,5 @@ input[type="text"]:focus {
 
 .entry-list {
   height: 100%;
+  border-top: 1px solid #ebebeb;
 }
