@@ -1,17 +1,18 @@
 .sidebar {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    width: 400px;
-    flex: 1 1 100%;
-    overflow-y: auto;
-    order: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow-y: auto;
+  order: 1;
+  flex-shrink: 0;
+  width: 400px;
 }
 
 .search {
-
+  padding: 1em;
+  border-bottom: 1px solid #ebebeb;
 }
 
 .entry-list {
-    height: 100%;
+  height: 100%;
 }

@@ -21,6 +21,7 @@ const EntryList = ({ focusedEntry, setFocusedEntry }) => {
       console.log('entries', entries);
       setEntries([...entries, ...testData]);
       setAllEntries([...entries, ...testData]);
+      setFocusedEntry(entries[0]);
     });
   };
 

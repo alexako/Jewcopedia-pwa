@@ -55,5 +55,9 @@
   border-left: 1px solid #ebebeb;
   padding: 1em;
   order: 2;
-  max-width: 800px;
+  /* max-width: 800px; */
+}
+
+.main > * {
+  flex: 1 1 auto;
 }
