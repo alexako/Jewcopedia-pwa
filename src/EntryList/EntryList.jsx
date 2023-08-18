@@ -9,6 +9,7 @@ import testData from "../data.json";
 const EntryList = ({ focusedEntry, setFocusedEntry }) => {
   const [entries, setEntries] = useState([]);
   const [allEntries, setAllEntries] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const fetchEntries = async () => {
     await getDocs(collection(db, "entries")).then((data) => {
@@ -29,15 +30,12 @@ const EntryList = ({ focusedEntry, setFocusedEntry }) => {
     fetchEntries();
   }, []);
 
-  const searchEntry = (e) => {
-
-    if (!e.target.value) {
+  useEffect(() => {
+    if (!searchQuery) {
       setEntries(allEntries);
-      return;
     }
 
-    const searchQuery = e.target.value.toLowerCase();
-    const filteredEntries = entries.filter(entry => {
+    const filteredEntries = allEntries.filter(entry => {
       return (
         entry.firstName.toLowerCase().includes(searchQuery) ||
         entry.lastName.toLowerCase().includes(searchQuery) ||
@@ -45,12 +43,18 @@ const EntryList = ({ focusedEntry, setFocusedEntry }) => {
       );
     });
     setEntries(filteredEntries);
+  }, [searchQuery]);
+
+  const clearSearch = () => {
+    setEntries(allEntries);
+    setSearchQuery("");
   };
 
   return (
     <div className="sidebar">
       <div className="search">
-        <input type="text" placeholder="Search" onChange={e => searchEntry(e)} />
+        <div className="search__clear-btn" onClick={() => clearSearch()}>x</div>
+        <input type="text" placeholder="Search" value={searchQuery} onChange={e => setSearchQuery(e.currentTarget.value)} />
       </div>
       <div className="entry-list">
         {entries.map((entry, index) => {
