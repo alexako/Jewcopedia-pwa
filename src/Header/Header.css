@@ -1,0 +1,14 @@
+.header {
+    position: fixed;
+    right: 0;
+}
+
+.admin-login-btn {
+    outline: none;
+    border: 0;
+    background-color: mediumpurple;
+    color: white;
+    padding: 1em;
+    font-size: 1em;
+    font-weight: 700;
+}
