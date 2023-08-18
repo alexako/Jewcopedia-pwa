@@ -18,10 +18,9 @@ const EntryList = ({ focusedEntry, setFocusedEntry }) => {
           ...doc.data(),
         };
       });
-      // setEntries(entries);
-      // setAllEntries(entries);
-      setEntries(testData);
-      setAllEntries(testData);
+      console.log('entries', entries);
+      setEntries([...entries, ...testData]);
+      setAllEntries([...entries, ...testData]);
     });
   };
 
@@ -54,7 +53,7 @@ const EntryList = ({ focusedEntry, setFocusedEntry }) => {
       </div>
       <div className="entry-list">
         {entries.map((entry, index) => {
-          return <Entry key={index} entry={entry} focused={entry.id === focusedEntry.id} setFocusedEntry={setFocusedEntry} />;
+          return <Entry key={index} entry={entry} focused={entry.id === focusedEntry?.id} setFocusedEntry={setFocusedEntry} />;
         })}
         { !entries.length && (
           <div style={{ width: "100%" }}> No entries found. </div>
