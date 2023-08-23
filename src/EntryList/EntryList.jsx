@@ -37,9 +37,9 @@ const EntryList = ({ focusedEntry, setFocusedEntry }) => {
 
     const filteredEntries = allEntries.filter(entry => {
       return (
-        entry.firstName.toLowerCase().includes(searchQuery) ||
-        entry.lastName.toLowerCase().includes(searchQuery) ||
-        entry.details.toLowerCase().includes(searchQuery)
+        entry.firstName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        entry.lastName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        entry.details.toLowerCase().includes(searchQuery.toLowerCase())
       );
     });
     setEntries(filteredEntries);
