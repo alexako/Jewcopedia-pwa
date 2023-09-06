@@ -15,7 +15,7 @@ function App() {
       <div className="container">
         <EntryList focusedEntry={focusedEntry} setFocusedEntry={setFocusedEntry} />
         <div className="main">
-          <Header user={user}/>
+          <Header user={user} setUser={setUser} />
           <FocusedEntry focusedEntry={focusedEntry} />
         </div>
       </div>

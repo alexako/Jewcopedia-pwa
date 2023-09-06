@@ -1,0 +1,36 @@
+form > input,
+form > input[type="text"] {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5em;
+  border: 1px solid #ebebeb;
+  border-radius: 4px;
+  background-color: #ebebeb;
+  color: #282c34;
+  width: unset;
+  margin: 0.5em 0;
+}
+
+form > input:focus {
+  outline: none;
+  background-color: #fff;
+}
+
+form > button[type="submit"] {
+  background-color: #282c34;
+  color: #fff;
+  border: none;
+  padding: 0.5em;
+  margin-top: 1em;
+  border-radius: 4px;
+  font-size: 1em;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+
+form > button[type="submit"]:hover {
+  background-color: #fff;
+  color: #282c34;
+  border: 1px solid #282c34;
+}
