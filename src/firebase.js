@@ -11,6 +11,9 @@ import {
   sendPasswordResetEmail,
   signOut,
 } from "firebase/auth";
+import * as firebaseui from "firebaseui";
+import "firebaseui/dist/firebaseui.css";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -34,17 +37,23 @@ const analytics = getAnalytics(app);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
+const ui = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(auth);
+
 const logInWithEmailAndPassword = async (email, password) => {
   try {
-    await signInWithEmailAndPassword(auth, email, password);
-  } catch (error) {
-    console.error(error);
+    const res = await signInWithEmailAndPassword(auth, email, password);
+    return res;
+  } catch (err) {
+    console.error(err);
+    alert(err.message)
   }
 };
 
 const registerWithEmailAndPassword = async (name, email, password) => {
+  console.group();
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password);
+    console.log("Created user successfully: ", res.user);
     const user = res.user;
     await addDoc(collection(db, "users"), {
       uid: user.uid,
@@ -52,16 +61,20 @@ const registerWithEmailAndPassword = async (name, email, password) => {
       authProvider: "local",
       email,
     });
+    console.log("Registered Successfully!", user);
+    return user;
   } catch (err) {
     console.error(err);
     alert(err.message);
   }
+  console.groupEnd();
 };
 
 const sendPasswordReset = async (email) => {
   try {
-    await sendPasswordResetEmail(auth, email);
+    const res = await sendPasswordResetEmail(auth, email);
     alert("Password reset link sent!");
+    return res;
   } catch (err) {
     console.error(err);
     alert(err.message);
@@ -75,6 +88,7 @@ const logout = () => {
 export {
   auth,
   db,
+  ui,
   logInWithEmailAndPassword,
   registerWithEmailAndPassword,
   sendPasswordReset,
