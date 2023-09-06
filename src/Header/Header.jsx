@@ -3,6 +3,7 @@ import "./Header.css";
 import RegisterForm from "../Forms/RegisterForm";
 import LoginForm from "../Forms/LoginForm";
 import PasswordResetForm from "../Forms/PasswordResetForm";
+import Admin from "../Admin/Admin";
 
 const Header = ({ user, setUser }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -33,7 +34,7 @@ const Header = ({ user, setUser }) => {
       "login": <LoginForm setCurrentState={setCurrentState}  setUser={setUser}/>,
       "passwordReset": <PasswordResetForm setCurrentState={setCurrentState} />,
       "emailSent": <div>Email Sent. Check your email and follow the instructions to reset your password.</div>,
-      "admin": <div>Admin</div>,
+      "admin": <Admin />,
       "error": <div>An error has occurred.</div>,
     }
 
