@@ -1,0 +1,40 @@
+.entry {
+    padding: 1em;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid #ebebeb;
+}
+
+.entry--focused {
+    background-color: #ebebeb;
+}
+
+.description-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.entry__avatar {
+    margin-right: 1em;
+}
+
+.entry__avatar--img {
+    height: 55px;
+    width: 55px;
+    border-radius: 50%;
+}
+
+.entry__name {
+    text-align: left;
+    font-weight: 700;
+}
+
+.entry__header {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}

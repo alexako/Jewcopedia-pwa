@@ -1,0 +1,33 @@
+.focused-entry {
+  flex: 1;
+  height: 100vh;
+}
+
+.focused-entry__header {
+  display: flex;
+  background-color: #ebebeb;
+  padding: 1em;
+}
+
+.focused-entry__name {
+  font-weight: 700;
+  font-size: 2em;
+}
+
+.focused-entry__avatar {
+  margin-right: 3em;
+}
+
+.focused-entry__avatar--img {
+  width: 100px;
+}
+
+.focused-entry__details {
+  padding: 1.5em;
+}
+
+.focused-entry__details-title {
+  font-weight: 700;
+  font-size: 1.5em;
+  margin-bottom: 0.5em;
+}

@@ -1,24 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
+import AddEntry from './AddEntry/AddEntry';
+import EntryList from './EntryList/EntryList';
+import FocusedEntry from './FocusedEntry/FocusedEntry';
 import './App.css';
+import Header from './Header/Header';
 
 function App() {
+
+  const [focusedEntry, setFocusedEntry] = useState(null);
+  const [user, setUser] = useState(null);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="container">
+        <EntryList focusedEntry={focusedEntry} setFocusedEntry={setFocusedEntry} />
+        <div className="main">
+          <Header user={user} setUser={setUser} />
+          <FocusedEntry focusedEntry={focusedEntry} />
+        </div>
+      </div>
     </div>
   );
 }
