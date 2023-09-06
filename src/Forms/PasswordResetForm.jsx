@@ -5,8 +5,10 @@ import "./Form.css";
 const PasswordResetForm = ({ setCurrentState }) => {
   const [passwordResetEmail, setPasswordResetEmail] = useState("");
 
-  const passwordReset = () => {
-    sendPasswordReset(passwordResetEmail);
+  const passwordReset = (e) => {
+    e.preventDefault();
+    sendPasswordReset(passwordResetEmail)
+      .then(() => setCurrentState("emailSent"));
   };
 
   return (

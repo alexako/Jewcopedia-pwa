@@ -2,22 +2,22 @@ import { useState } from "react";
 import { logInWithEmailAndPassword } from "../firebase";
 import "./Form.css";
 
-const LoginForm = ({ setCurrentState }) => {
+const LoginForm = ({ setCurrentState, setUser }) => {
   const [loginForm, setLoginForm] = useState({});
 
-  const login = () => {
-    const res = logInWithEmailAndPassword(loginForm.email, loginForm.password)
+  const login = (e) => {
+    e.preventDefault();
+    logInWithEmailAndPassword(loginForm.email, loginForm.password)
       .then((userCredential) => {
-        // Signed in
         const user = userCredential.user;
         if (user) {
           console.log("user", user);
           setCurrentState("admin");
+          setUser(user);
         } else {
           setCurrentState("error");
         }
-        // ...
-      });
+      }).catch((error) => setCurrentState("error"));
   };
 
   return (
@@ -41,7 +41,7 @@ const LoginForm = ({ setCurrentState }) => {
         />
         <button type="submit">Login</button>
       </form>
-      <a href="/password-reset">Forgot Password?</a>
+      <div className="forgot-password-link" onClick={() => setCurrentState("passwordReset")}>Forgot Password?</div>
     </>
   );
 };

@@ -55,13 +55,14 @@ const registerWithEmailAndPassword = async (name, email, password) => {
     const res = await createUserWithEmailAndPassword(auth, email, password);
     console.log("Created user successfully: ", res.user);
     const user = res.user;
-    const addRes = await addDoc(collection(db, "users"), {
+    await addDoc(collection(db, "users"), {
       uid: user.uid,
       name,
       authProvider: "local",
       email,
     });
-    console.log("Registered Successfully!", addRes);
+    console.log("Registered Successfully!", user);
+    return user;
   } catch (err) {
     console.error(err);
     alert(err.message);

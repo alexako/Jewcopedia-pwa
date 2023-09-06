@@ -4,9 +4,9 @@ import RegisterForm from "../Forms/RegisterForm";
 import LoginForm from "../Forms/LoginForm";
 import PasswordResetForm from "../Forms/PasswordResetForm";
 
-const Header = ({ user }) => {
+const Header = ({ user, setUser }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentState, setCurrentState] = useState("initialState");
+  const [currentState, setCurrentState] = useState(user ? "admin" : "initialState");
 
   console.log("Rendering Header");
 
@@ -29,11 +29,12 @@ const Header = ({ user }) => {
   const ModalContent = () => {
     const renderModalContent = {
       "initialState": <InitialState />,
-      "register": <RegisterForm setCurrentState={setCurrentState} />,
-      "login": <LoginForm setCurrentState={setCurrentState} />,
+      "register": <RegisterForm setCurrentState={setCurrentState} setUser={setUser} />,
+      "login": <LoginForm setCurrentState={setCurrentState}  setUser={setUser}/>,
       "passwordReset": <PasswordResetForm setCurrentState={setCurrentState} />,
+      "emailSent": <div>Email Sent. Check your email and follow the instructions to reset your password.</div>,
       "admin": <div>Admin</div>,
-      "error": <div>Error</div>,
+      "error": <div>An error has occurred.</div>,
     }
 
     return (
