@@ -12,3 +12,17 @@
     font-size: 1em;
     font-weight: 700;
 }
+
+.modal {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    border: 2px solid grey;
+    background: white;
+    padding: 1em;
+    border-radius: 0.5em;
+    left: 1%;
+    right: 1%;
+    top: 1%;
+    bottom: 1%;
+}

@@ -8,13 +8,14 @@ import Header from './Header/Header';
 function App() {
 
   const [focusedEntry, setFocusedEntry] = useState(null);
+  const [user, setUser] = useState(null);
 
   return (
     <div className="App">
       <div className="container">
         <EntryList focusedEntry={focusedEntry} setFocusedEntry={setFocusedEntry} />
         <div className="main">
-          <Header/>
+          <Header user={user}/>
           <FocusedEntry focusedEntry={focusedEntry} />
         </div>
       </div>
