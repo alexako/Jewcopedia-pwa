@@ -46,14 +46,16 @@ const Header = ({ user, setUser }) => {
   };
   
   const Modal = () => (
-    <div className="modal">
-      <div className="modal__header">
-        <div className="modal__header-title">
-          Admin
+    <div className="modal-container">
+      <div className="modal">
+        <div className="modal__header">
+          <div className="modal__header-title">
+            Admin
+          </div>
+          <button className="modal__close-btn" onClick={closeModal}>X</button>
         </div>
-        <button className="modal__close-btn" onClick={closeModal}>X</button>
+        <ModalContent />
       </div>
-      <ModalContent />
     </div>
   );
 
