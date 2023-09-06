@@ -51,4 +51,6 @@
   border-left: 1px solid #ebebeb;
   order: 2;
   flex-grow: 1;
+  height: 100vh;
+  overflow-y: auto;
 }

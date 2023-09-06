@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import AddEntry from './AddEntry/AddEntry';
 import EntryList from './EntryList/EntryList';
 import FocusedEntry from './FocusedEntry/FocusedEntry';
 import './App.css';
