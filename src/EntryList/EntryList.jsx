@@ -11,6 +11,10 @@ const EntryList = ({ focusedEntry, setFocusedEntry }) => {
   const [allEntries, setAllEntries] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
 
+  const byLastName = (a, b) => {
+    return a.lastName < b.lastName ? -1 : 1;
+  };
+
   const fetchEntries = async () => {
     await getDocs(collection(db, "entries")).then((data) => {
       const entries = data.docs.map((doc) => {
@@ -18,10 +22,11 @@ const EntryList = ({ focusedEntry, setFocusedEntry }) => {
           id: doc.id,
           ...doc.data(),
         };
-      });
-      console.log('entries', entries);
-      setEntries([...entries, ...testData]);
-      setAllEntries([...entries, ...testData]);
+      })
+      .sort(byLastName);
+
+      setEntries(entries);
+      setAllEntries(entries);
       setFocusedEntry(entries[0]);
     });
   };
@@ -35,13 +40,15 @@ const EntryList = ({ focusedEntry, setFocusedEntry }) => {
       setEntries(allEntries);
     }
 
-    const filteredEntries = allEntries.filter(entry => {
-      return (
-        entry.firstName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        entry.lastName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        entry.details.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-    });
+    const filteredEntries = allEntries
+      .filter(entry => {
+        return (
+          entry.firstName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          entry.lastName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          entry.details.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+    })
+    .sort(byLastName);
     setEntries(filteredEntries);
   }, [searchQuery]);
 

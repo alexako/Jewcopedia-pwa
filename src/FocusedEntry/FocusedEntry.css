@@ -6,21 +6,33 @@
 
 .focused-entry__header {
   display: flex;
-  background-color: #ebebeb;
-  padding: 1em;
+  flex-direction: column;
+  background-size: cover;
+  background-position: right;
+  background-repeat: no-repeat;
 }
 
 .focused-entry__name {
   font-weight: 700;
   font-size: 2em;
+  background-color: #646b5eb0;
+  padding: 0.5em;
+  color: white;
+  text-align: right;
+  transition: all 0.5s ease-in-out;
+  text-align: left;
+}
+
+.focused-entry__name--header{
+  font-size: 0.5em;
 }
 
 .focused-entry__avatar {
-  margin-right: 3em;
+  background-color: #646b5eb0;
 }
 
 .focused-entry__avatar--img {
-  width: 100px;
+  width: 300px;
 }
 
 .focused-entry__details {
