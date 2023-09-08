@@ -15,7 +15,7 @@ const Entry = ({ entry, focused, setFocusedEntry }) => {
       </div>
       <div className="description-container">
         <div className="entry__name">{entry.firstName} {entry.lastName}</div>
-        <div className="entry__header">{entry.details}</div>
+        <div className="entry__header">{entry.header || entry.details}</div>
       </div>
     </div>
   );

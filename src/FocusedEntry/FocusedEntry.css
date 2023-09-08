@@ -23,7 +23,7 @@
   text-align: left;
 }
 
-.focused-entry__name--subtitle {
+.focused-entry__name--header{
   font-size: 0.5em;
 }
 

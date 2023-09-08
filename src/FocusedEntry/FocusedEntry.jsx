@@ -16,6 +16,7 @@ const FocusedEntry = ({ focusedEntry }) => {
             )}
             <div className="focused-entry__name">
               {focusedEntry.firstName} {focusedEntry.lastName}
+              <div className="focused-entry__name--header">{focusedEntry.header}</div>
             </div>
           </div>
           <div className="focused-entry__details">
