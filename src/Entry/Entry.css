@@ -6,7 +6,8 @@
 }
 
 .entry--focused {
-    background-color: #ebebeb;
+    background-color: #646B5E;
+    color: white;
 }
 
 .description-container {

@@ -6,7 +6,10 @@
 
 .focused-entry__header {
   display: flex;
-  background-color: #ebebeb;
+  flex-direction: column;
+  background-image: "../../public/bg.png";
+  background-position: center;
+  background-repeat: no-repeat;
   padding: 1em;
 }
 
@@ -20,7 +23,7 @@
 }
 
 .focused-entry__avatar--img {
-  width: 100px;
+  width: 300px;
 }
 
 .focused-entry__details {
