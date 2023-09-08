@@ -2,11 +2,13 @@ import "./FocusedEntry.css";
 
 const FocusedEntry = ({ focusedEntry }) => {
 
+  const backgroundURL = "https://firebasestorage.googleapis.com/v0/b/jewcopedia.appspot.com/o/background.png?alt=media&token=891c80fd-23de-41af-889d-35c69762e56c";
+
   return (
     <div className="focused-entry">
       {focusedEntry ? (
         <>
-          <div className="focused-entry__header">
+          <div className="focused-entry__header" style={{ backgroundImage: `url(${backgroundURL})`}}>
             { focusedEntry.avatar && (
               <div className="focused-entry__avatar">
                   <img className="focused-entry__avatar--img" src={focusedEntry.avatar} alt=""/>
