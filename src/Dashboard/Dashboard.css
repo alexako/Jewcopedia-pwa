@@ -1,37 +1,16 @@
 .header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  border-bottom: 1px solid #ebebeb;
-}
-
-.logo-container {
-  cursor: pointer;
-}
-
-.logo {
-  height: 75px;
-}
-
-.admin {
-  display: flex;
-  justify-content: center;
+  position: fixed;
+  right: 0;
 }
 
 .admin-login-btn {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
   outline: none;
   border: 0;
-  font-size: 0.8em;
-  padding: 0.25em 0.75em;
-  transition: all 0.1s ease-in-out;
-}
-
-.admin-login-btn:hover {
-  background-color: #d3d3d3;
-  color: #282c34;
+  background-color: mediumpurple;
+  color: white;
+  padding: 1em;
+  font-size: 1em;
+  font-weight: 700;
 }
 
 .modal-container {

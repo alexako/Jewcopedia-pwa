@@ -60,7 +60,7 @@ const EntryList = ({ focusedEntry, setFocusedEntry }) => {
   return (
     <div className="sidebar">
       <div className="search">
-        <div className="search__clear-btn" onClick={() => clearSearch()}>x</div>
+        { searchQuery  && <div className="search__clear-btn" onClick={() => clearSearch()}>x</div> }
         <input type="text" placeholder="Search" value={searchQuery} onChange={e => setSearchQuery(e.currentTarget.value)} />
       </div>
       <div className="entry-list">
