@@ -6,9 +6,11 @@ import ErrorPage from './error-page';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import Dashboard from './components/Dashboard';
 
 const router = createBrowserRouter([
   { path: '/', element: <App />, errorElement: <ErrorPage /> },
+  { path: '/dashboard', element: <Dashboard />, errorElement: <ErrorPage /> },
 ])
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

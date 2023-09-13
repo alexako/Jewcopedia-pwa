@@ -1,0 +1,71 @@
+.header {
+  position: fixed;
+  right: 0;
+}
+
+.admin-login-btn {
+  outline: none;
+  border: 0;
+  background-color: mediumpurple;
+  color: white;
+  padding: 1em;
+  font-size: 1em;
+  font-weight: 700;
+}
+
+.modal-container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.35);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background: white;
+  width: 50%;
+  transform: translateY(-50%);
+  padding: 1em;
+  border-radius: 0.5em;
+  box-shadow: 1px 1px 5px 3px rgb(0 0 0 / 10%);
+}
+
+.modal__header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal__header-title {
+  font-size: 1.5em;
+  font-weight: 700;
+}
+
+.modal__close-btn {
+  align-self: flex-end;
+  margin-bottom: 1em;
+}
+
+.modal__close-btn,
+.modal__control-btn {
+  color: black;
+  border: none;
+  margin: 0.5em;
+  padding: 0.5em;
+  border-radius: 4px;
+  font-size: 1em;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+
+.modal__control-btn:hover {
+  background-color: #d3d3d3;
+  color: #282c34;
+}

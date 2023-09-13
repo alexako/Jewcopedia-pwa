@@ -11,10 +11,10 @@ function App() {
 
   return (
     <div className="App">
+      <Header user={user} setUser={setUser} />
       <div className="container">
         <EntryList focusedEntry={focusedEntry} setFocusedEntry={setFocusedEntry} />
         <div className="main">
-          <Header user={user} setUser={setUser} />
           <FocusedEntry focusedEntry={focusedEntry} />
         </div>
       </div>
