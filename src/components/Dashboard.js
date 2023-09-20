@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { getDocs, collection } from "firebase/firestore";
 import { db } from "../firebase";
-import Entry from "../Entry/Entry";
 import EntryList from "../EntryList/EntryList";
+import Header from "../Header/Header";
+import { useAuth, AuthProvider } from "../AuthProvider/AuthProvider";
+import { Navigate } from "react-router-dom";
 
 const Dashboard = () => {
   const [entries, setEntries] = useState([]);
@@ -21,9 +23,6 @@ const Dashboard = () => {
     });
   };
 
-  useEffect(() => {
-  }, []);
-
   const addEntry = () => {
   };
 
@@ -34,8 +33,15 @@ const Dashboard = () => {
   };
 
   const Dashboard = () => {
+    const { user } = useAuth();
+
+    if (!user) {
+      return <Navigate to="/" />;
+    }
+
     return (
       <>
+        <Header />
         <div className="dashboard">
           <EntryList setFocusedEntry={() => {}} editMode={true} />
         </div>
@@ -44,7 +50,9 @@ const Dashboard = () => {
   };
 
   return (
-    <Dashboard />
+    <AuthProvider>
+      <Dashboard />
+    </AuthProvider>
   );
 };
 

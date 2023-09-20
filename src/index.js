@@ -10,7 +10,7 @@ import Dashboard from './components/Dashboard';
 
 const router = createBrowserRouter([
   { path: '/', element: <App />, errorElement: <ErrorPage /> },
-  { path: '/dashboard', element: <Dashboard />, errorElement: <ErrorPage /> },
+  { path: '/dashboard', element: <Dashboard/>, errorElement: <ErrorPage /> },
 ])
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
