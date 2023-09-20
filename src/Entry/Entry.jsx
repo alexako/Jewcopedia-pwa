@@ -1,6 +1,6 @@
 import "./Entry.css";
 
-const Entry = ({ entry, focused, setFocusedEntry }) => {
+const Entry = ({ entry, focused, setFocusedEntry, editMode }) => {
 
   const getAvatar = () => {
     return entry.avatar
@@ -17,6 +17,12 @@ const Entry = ({ entry, focused, setFocusedEntry }) => {
         <div className="entry__name">{entry.firstName} {entry.lastName}</div>
         <div className="entry__header">{entry.header || entry.details}</div>
       </div>
+      { editMode && (
+        <div className="entry__controls">
+          <div className="entry__edit-btn">Edit</div>
+          <div className="entry__delete-btn">Delete</div>
+        </div>
+      )}
     </div>
   );
 };

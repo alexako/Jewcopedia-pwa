@@ -6,7 +6,7 @@ import "./EntryList.css";
 import testData from "../data.json";
 
 
-const EntryList = ({ focusedEntry, setFocusedEntry }) => {
+const EntryList = ({ focusedEntry, setFocusedEntry, editMode }) => {
   const [entries, setEntries] = useState([]);
   const [allEntries, setAllEntries] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -17,13 +17,15 @@ const EntryList = ({ focusedEntry, setFocusedEntry }) => {
 
   const fetchEntries = async () => {
     await getDocs(collection(db, "entries")).then((data) => {
-      const entries = data.docs.map((doc) => {
-        return {
-          id: doc.id,
-          ...doc.data(),
-        };
-      })
-      .sort(byLastName);
+      // const entries = data.docs.map((doc) => {
+      //   return {
+      //     id: doc.id,
+      //     ...doc.data(),
+      //   };
+      // })
+      // .sort(byLastName);
+
+      const entries = testData.sort(byLastName);
 
       setEntries(entries);
       setAllEntries(entries);
@@ -58,15 +60,19 @@ const EntryList = ({ focusedEntry, setFocusedEntry }) => {
   };
 
   return (
-    <div className="sidebar">
+    <div className={`sidebar ${editMode && 'sidebar--edit-mode'}`}>
       <div className="search">
         { searchQuery  && <div className="search__clear-btn" onClick={() => clearSearch()}>x</div> }
         <input type="text" placeholder="Search" value={searchQuery} onChange={e => setSearchQuery(e.currentTarget.value)} />
       </div>
       <div className="entry-list">
-        {entries.map((entry, index) => {
-          return <Entry key={index} entry={entry} focused={entry.id === focusedEntry?.id} setFocusedEntry={setFocusedEntry} />;
-        })}
+        {entries.map((entry, index) => (
+          <Entry key={index}
+            entry={entry}
+            focused={entry.id === focusedEntry?.id}
+            setFocusedEntry={setFocusedEntry}
+            editMode={editMode} />
+        ))}
         { !entries.length && (
           <div style={{ width: "100%" }}> No entries found. </div>
         )}
