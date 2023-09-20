@@ -39,3 +39,19 @@
     text-overflow: ellipsis;
     overflow: hidden;
 }
+
+.entry__controls {
+    display: flex;
+    align-items: center;
+}
+
+.entry__controls > * {
+    cursor: pointer;
+    padding: 1em;
+    transition: all 0.1s ease-in-out;
+}
+
+.entry__controls > *:hover {
+    background-color: #d3d3d3;
+    color: #282c34;
+}

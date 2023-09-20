@@ -8,6 +8,10 @@
   width: 325px;
 }
 
+.sidebar--edit-mode {
+  width: 100%;
+}
+
 input[type="text"] {
   padding: 0.5em;
   border: 1px solid #ebebeb;
@@ -23,9 +27,10 @@ input[type="text"]:focus {
 }
 
 .search {
-  position: relative;
-  padding: 1.5em;
-  margin: 0 1em;
+  position: sticky;
+  top: -1px;
+  padding: 1.5em 2em;
+  background-color: #fff;
 }
 
 .search__clear-btn {

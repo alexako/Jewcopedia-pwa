@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import { getDocs, collection } from "firebase/firestore";
 import { db } from "../firebase";
+import EntryList from "../EntryList/EntryList";
+import Header from "../Header/Header";
+import { useAuth, AuthProvider } from "../AuthProvider/AuthProvider";
+import { Navigate } from "react-router-dom";
+import AddEntry from "../AddEntry/AddEntry";
 
 const Dashboard = () => {
   const [entries, setEntries] = useState([]);
@@ -19,10 +24,6 @@ const Dashboard = () => {
     });
   };
 
-  useEffect(() => {
-    fetchEntries();
-  }, []);
-
   const addEntry = () => {
   };
 
@@ -32,18 +33,30 @@ const Dashboard = () => {
   const deleteEntry = () => {
   };
 
-  return (
-    <div style={{fontFamily: 'Stalemate Pro', color: '#646B5E', backgroundColor: '#FAFCFD'}}>
-      {entries.map((entry, index) => (
-        <div key={index}>
-          <h2 style={{fontFamily: 'Futura PT'}}>{entry.lastName}</h2>
-          <h2 style={{fontFamily: 'Futura PT'}}>{entry.firstName}</h2>
-          <button style={{backgroundColor: '#B6BEC2'}} onClick={() => editEntry(index)}>Edit</button>
-          <button style={{backgroundColor: '#BA7882'}} onClick={() => deleteEntry(index)}>Delete</button>
+  const Dashboard = () => {
+    const { user } = useAuth();
+
+    if (!user) {
+      return <Navigate to="/" />;
+    }
+
+    return (
+      <>
+        <Header />
+        <div className="add-entry-container">
+          <AddEntry />
         </div>
-      ))}
-      <button style={{backgroundColor: '#B6BEC2'}} onClick={addEntry}>Add Entry</button>
-    </div>
+        <div className="dashboard">
+          <EntryList setFocusedEntry={() => {}} editMode={true} />
+        </div>
+      </>
+    )
+  };
+
+  return (
+    <AuthProvider>
+      <Dashboard />
+    </AuthProvider>
   );
 };
 

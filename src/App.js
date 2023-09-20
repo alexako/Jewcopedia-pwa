@@ -3,15 +3,16 @@ import EntryList from './EntryList/EntryList';
 import FocusedEntry from './FocusedEntry/FocusedEntry';
 import './App.css';
 import Header from './Header/Header';
+import { AuthProvider } from './AuthProvider/AuthProvider';
 
 function App() {
 
   const [focusedEntry, setFocusedEntry] = useState(null);
-  const [user, setUser] = useState(null);
 
   return (
+    <AuthProvider>
     <div className="App">
-      <Header user={user} setUser={setUser} />
+      <Header />
       <div className="container">
         <EntryList focusedEntry={focusedEntry} setFocusedEntry={setFocusedEntry} />
         <div className="main">
@@ -19,6 +20,7 @@ function App() {
         </div>
       </div>
     </div>
+    </AuthProvider>
   );
 }
 
