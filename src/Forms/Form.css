@@ -1,3 +1,9 @@
+form {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+}
+
 form > input,
 form > input[type="text"] {
   display: flex;
@@ -35,9 +41,50 @@ form > button[type="submit"]:hover {
   border: 1px solid #282c34;
 }
 
+form > textarea {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5em;
+  border: 1px solid #ebebeb;
+  border-radius: 4px;
+  background-color: #ebebeb;
+  color: #282c34;
+  width: 310px;
+  margin: 0.5em 0;
+  height: 200px;
+}
+
+.form-group {
+  display: flex;
+}
+
+.form-group > * {
+  margin: 0.5em;
+}
+
+.show-form {
+  display: flex;
+}
+
 .forgot-password-link {
   font-size: 0.8em;
   margin-top: 0.5em;
   display: inline;
+  cursor: pointer;
+}
+
+.add-entry-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 1em;
+  padding-bottom: 2em;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.add-entry-container__header {
+  font-size: 1.5em;
+  font-weight: 700;
   cursor: pointer;
 }

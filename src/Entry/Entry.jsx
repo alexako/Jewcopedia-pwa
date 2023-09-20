@@ -1,3 +1,4 @@
+import { FiEdit, FiTrash2 } from "react-icons/fi";
 import "./Entry.css";
 
 const Entry = ({ entry, focused, setFocusedEntry, editMode }) => {
@@ -19,8 +20,9 @@ const Entry = ({ entry, focused, setFocusedEntry, editMode }) => {
       </div>
       { editMode && (
         <div className="entry__controls">
-          <div className="entry__edit-btn">Edit</div>
-          <div className="entry__delete-btn">Delete</div>
+          <div className="entry__edit-btn"><FiEdit /></div>
+          
+          <div className="entry__delete-btn"><FiTrash2 /></div>
         </div>
       )}
     </div>

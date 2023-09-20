@@ -5,6 +5,7 @@ import EntryList from "../EntryList/EntryList";
 import Header from "../Header/Header";
 import { useAuth, AuthProvider } from "../AuthProvider/AuthProvider";
 import { Navigate } from "react-router-dom";
+import AddEntry from "../AddEntry/AddEntry";
 
 const Dashboard = () => {
   const [entries, setEntries] = useState([]);
@@ -42,6 +43,9 @@ const Dashboard = () => {
     return (
       <>
         <Header />
+        <div className="add-entry-container">
+          <AddEntry />
+        </div>
         <div className="dashboard">
           <EntryList setFocusedEntry={() => {}} editMode={true} />
         </div>
