@@ -1,6 +1,7 @@
+import { FiEdit, FiTrash2 } from "react-icons/fi";
 import "./Entry.css";
 
-const Entry = ({ entry, focused, setFocusedEntry }) => {
+const Entry = ({ entry, focused, setFocusedEntry, editMode }) => {
 
   const getAvatar = () => {
     return entry.avatar
@@ -17,6 +18,13 @@ const Entry = ({ entry, focused, setFocusedEntry }) => {
         <div className="entry__name">{entry.firstName} {entry.lastName}</div>
         <div className="entry__header">{entry.header || entry.details}</div>
       </div>
+      { editMode && (
+        <div className="entry__controls">
+          <div className="entry__edit-btn"><FiEdit /></div>
+          
+          <div className="entry__delete-btn"><FiTrash2 /></div>
+        </div>
+      )}
     </div>
   );
 };

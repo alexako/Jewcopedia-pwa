@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { logInWithEmailAndPassword } from "../firebase";
 import "./Form.css";
+import { Navigate } from "react-router-dom";
 
 const LoginForm = ({ setCurrentState, setUser }) => {
   const [loginForm, setLoginForm] = useState({});
@@ -18,6 +19,8 @@ const LoginForm = ({ setCurrentState, setUser }) => {
           setCurrentState("error");
         }
       }).catch((error) => setCurrentState("error"));
+
+    return <Navigate to="/" />
   };
 
   return (

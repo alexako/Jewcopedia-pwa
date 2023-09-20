@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { registerWithEmailAndPassword } from "../firebase";
 import "./Form.css";
+import { Navigate } from "react-router-dom";
 
 const RegisterForm = ({ setCurrentState, setUser }) => {
   const [registerForm, setRegisterForm] = useState({});
@@ -16,6 +17,7 @@ const RegisterForm = ({ setCurrentState, setUser }) => {
         console.log("user", user);
         setCurrentState("admin");
         setUser(user);
+        return <Navigate to="/dashboard" />;
       }
     });
   };
