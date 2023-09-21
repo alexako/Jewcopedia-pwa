@@ -12,14 +12,14 @@ const PasswordResetForm = ({ setCurrentState }) => {
   };
 
   return (
-    <form onSubmit={passwordReset}>
+    <form onSubmit={passwordReset} style={{ display: "block" }}>
       <input
         type="email"
         placeholder="Email"
         value={passwordResetEmail}
         onChange={(e) => setPasswordResetEmail(e.currentTarget.value)}
       />
-      <button type="submit">Reset Password</button>
+      <button type="submit" className="submit-btn">Reset Password</button>
     </form>
   );
 };

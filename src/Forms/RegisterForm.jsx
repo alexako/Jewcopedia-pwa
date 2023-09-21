@@ -23,7 +23,7 @@ const RegisterForm = ({ setCurrentState, setUser }) => {
   };
 
   return (
-    <form onSubmit={register}>
+    <form onSubmit={register} style={{ display: "block" }}>
       <input
         type="text"
         placeholder="Name"
@@ -48,7 +48,7 @@ const RegisterForm = ({ setCurrentState, setUser }) => {
           setRegisterForm({ ...registerForm, password: e.currentTarget.value })
         }
       />
-      <button type="submit">Register</button>
+      <button type="submit" className="submit-btn">Register</button>
     </form>
   );
 };
