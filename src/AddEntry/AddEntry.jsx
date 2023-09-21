@@ -1,5 +1,5 @@
 import React, { useMemo, useRef, useState } from "react";
-import { collection, addDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import { db, storage } from "../firebase";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import { useDropzone } from "react-dropzone";
@@ -88,12 +88,13 @@ const AddEntry = ({entry}) => {
         return;
       }
 
-      const storageRef = ref(storage, `avatars/${lastName}_${firstName}-${Date.now()}`);
+      const entryId =  entry?.id || `${lastName}_${firstName}-${Date.now()}`;
+      const storageRef = ref(storage, `avatars/${entryId}`);
       const uploadTask = uploadBytesResumable(storageRef, avatar);
 
       console.log("uploading file...");
 
-      uploadTask.on("state_changed",
+      await uploadTask.on("state_changed",
         (snapshot) => {
           const progress =
             Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
@@ -104,18 +105,19 @@ const AddEntry = ({entry}) => {
         },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            setAvatar(downloadURL)
-            console.log("upload complete:", downloadURL);
+            setAvatar(downloadURL);
+            console.log("upload complete:", avatar);
           });
         }
       );
 
-      await addDoc(collection(db, "entries"), {
+      await setDoc(doc(db, "entries", entryId), {
         firstName,
         lastName,
         details,
         avatar,
       });
+      alert("Entry added successfully");
       setFirstName("");
       setLastName("");
       setDetails("");
@@ -212,7 +214,6 @@ const AddEntry = ({entry}) => {
         />
         <button type="submit">Add</button>
       </form>
-      { loading && <div className="add-entry-container__loading"></div> }
     </>
   );
 };

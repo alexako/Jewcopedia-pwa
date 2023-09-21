@@ -12,9 +12,6 @@ const Entry = ({ entry, focused, setFocusedEntry, editMode }) => {
       : `https://ui-avatars.com/api/?name=${entry.firstName}+${entry.lastName}`;
   };
 
-  const stipHtml = (html) => {
-  };
-
   return (
     <div className={`entry ${focused ? 'entry--focused' : ''}`} onClick={() => setFocusedEntry(entry)}>
       <div className="entry__avatar">
