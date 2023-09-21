@@ -25,7 +25,7 @@ const LoginForm = ({ setCurrentState, setUser }) => {
 
   return (
     <>
-      <form onSubmit={login}>
+      <form onSubmit={login} style={{ display: "block" }}>
         <input
           type="email"
           placeholder="Email"
@@ -42,7 +42,7 @@ const LoginForm = ({ setCurrentState, setUser }) => {
             setLoginForm({ ...loginForm, password: e.currentTarget.value })
           }
         />
-        <button type="submit">Login</button>
+        <button type="submit" className="submit-btn">Login</button>
       </form>
       <div className="forgot-password-link" onClick={() => setCurrentState("passwordReset")}>Forgot Password?</div>
     </>
