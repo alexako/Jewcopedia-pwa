@@ -48,7 +48,7 @@ const RegisterForm = ({ setCurrentState, setUser }) => {
           setRegisterForm({ ...registerForm, password: e.currentTarget.value })
         }
       />
-      <button type="submit">Register</button>
+      <button type="submit" className="submit-btn">Register</button>
     </form>
   );
 };

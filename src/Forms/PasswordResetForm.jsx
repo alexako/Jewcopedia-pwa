@@ -19,7 +19,7 @@ const PasswordResetForm = ({ setCurrentState }) => {
         value={passwordResetEmail}
         onChange={(e) => setPasswordResetEmail(e.currentTarget.value)}
       />
-      <button type="submit">Reset Password</button>
+      <button type="submit" className="submit-btn">Reset Password</button>
     </form>
   );
 };

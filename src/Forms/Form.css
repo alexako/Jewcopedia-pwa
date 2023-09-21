@@ -22,6 +22,7 @@ form > input:focus {
   background-color: #fff;
 }
 
+.submit-btn,
 form button:first-child {
   flex: 1;
   background-color: #282c34;
