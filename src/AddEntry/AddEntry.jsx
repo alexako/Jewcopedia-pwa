@@ -5,7 +5,7 @@ import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import { useDropzone } from "react-dropzone";
 import { Editor } from "@tinymce/tinymce-react";
 
-const AddEntry = ({entry}) => {
+const AddEntry = ({ entry, setModalIsOpen }) => {
   const [firstName, setFirstName] = useState(entry?.firstName || "");
   const [lastName, setLastName] = useState(entry?.lastName || "");
   const [details, setDetails] = useState(entry?.details || "");
@@ -136,7 +136,7 @@ const AddEntry = ({entry}) => {
     <>
       {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
-      {!loading && !error && (
+      {!entry && !loading && !error && (
         <div className="add-entry-container__header" onClick={() => setShowForm(!showForm)}>Add Entry</div>
       )}
       <form className={showForm ? 'show-form' : ''} onSubmit={onSubmit}>
@@ -177,11 +177,10 @@ const AddEntry = ({entry}) => {
         <Editor
           apiKey="avbdit00bu7iy19p28m9904hg1qg2v963s1qfcs32ks02hau"
           onInit={(evt, editor) => (editorRef.current = editor)}
-          initialValue="<p>This is the initial content of the entry.</p>"
+          initialValue={details || "<p>This is the initial content of the entry.</p>"}
           value={details}
           onEditorChange={(e) => setDetails(e)}
           init={{
-            height: 500,
             menubar: false,
             plugins: [
               "advlist",
@@ -212,7 +211,10 @@ const AddEntry = ({entry}) => {
               "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
           }}
         />
-        <button type="submit">Add</button>
+        <div className="form-group">
+          <button type="submit">{ entry ? "Save" : "Add" }</button>
+          { entry && <button type="button" onClick={() => setModalIsOpen(false)}>Cancel</button> }
+        </div>
       </form>
     </>
   );

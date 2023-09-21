@@ -1,10 +1,11 @@
-import { useModal } from "../AuthProvider/ModalProvider";
+import { useState } from "react";
+import AddEntry from "../AddEntry/AddEntry";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 import "./Entry.css";
 
 const Entry = ({ entry, focused, setFocusedEntry, editMode }) => {
 
-  const { openModal, closeModal } = useModal();
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const getAvatar = () => {
     return entry.avatar
@@ -23,8 +24,22 @@ const Entry = ({ entry, focused, setFocusedEntry, editMode }) => {
       </div>
       { editMode && (
         <div className="entry__controls">
-          <div className="entry__edit-btn" onClick={() => openModal()}><FiEdit /></div>
-          <div className="entry__delete-btn" onClick={() => closeModal()}><FiTrash2 /></div>
+          <div className="entry__edit-btn" onClick={() => setModalIsOpen(true)}><FiEdit /></div>
+          <div className="entry__delete-btn" onClick={() => setModalIsOpen(false)}><FiTrash2 /></div>
+        </div>
+      )}
+
+      { modalIsOpen && (
+        <div className="modal-container">
+          <div className="modal">
+            <div className="modal__header">
+              <div className="modal__header-title">
+                Edit Modal
+              </div>
+              <button className="modal__close-btn" onClick={() => setModalIsOpen(false)}>X</button>
+            </div>
+            <AddEntry entry={entry} setModalIsOpen={setModalIsOpen} />
+          </div>
         </div>
       )}
     </div>
