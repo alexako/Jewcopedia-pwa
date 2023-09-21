@@ -5,16 +5,16 @@ import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import { useDropzone } from "react-dropzone";
 import { Editor } from "@tinymce/tinymce-react";
 
-const AddEntry = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [details, setDetails] = useState("");
-  const [avatar, setAvatar] = useState(null);
+const AddEntry = ({entry}) => {
+  const [firstName, setFirstName] = useState(entry?.firstName || "");
+  const [lastName, setLastName] = useState(entry?.lastName || "");
+  const [details, setDetails] = useState(entry?.details || "");
+  const [avatar, setAvatar] = useState(entry?.avatar || null);
   const [progresspercent, setProgresspercent] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const [showForm, setShowForm] = useState(false);
+  const [showForm, setShowForm] = useState(!!entry);
 
   const {
     getRootProps,
@@ -161,6 +161,7 @@ const AddEntry = () => {
             name="firstName"
             value={firstName}
             onChange={(e) => setFirstName(e.currentTarget.value)}
+            required
           />
           <input
             type="text"
@@ -168,6 +169,7 @@ const AddEntry = () => {
             name="lastName"
             value={lastName}
             onChange={(e) => setLastName(e.currentTarget.value)}
+            required
           />
         </div>
         <Editor
