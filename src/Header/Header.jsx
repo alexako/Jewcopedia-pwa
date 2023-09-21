@@ -66,7 +66,7 @@ const Header = () => {
   
   const Modal = () => (
     <div className="modal-container">
-      <div className="modal">
+      <div className="modal modal-admin">
         <div className="modal__header">
           <div className="modal__header-title">
             Admin

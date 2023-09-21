@@ -25,7 +25,7 @@ const LoginForm = ({ setCurrentState, setUser }) => {
 
   return (
     <>
-      <form onSubmit={login}>
+      <form onSubmit={login} style={{ display: "block" }}>
         <input
           type="email"
           placeholder="Email"

@@ -23,7 +23,7 @@ const RegisterForm = ({ setCurrentState, setUser }) => {
   };
 
   return (
-    <form onSubmit={register}>
+    <form onSubmit={register} style={{ display: "block" }}>
       <input
         type="text"
         placeholder="Name"
