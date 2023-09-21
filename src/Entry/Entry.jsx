@@ -1,12 +1,18 @@
+import { useModal } from "../AuthProvider/ModalProvider";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 import "./Entry.css";
 
 const Entry = ({ entry, focused, setFocusedEntry, editMode }) => {
 
+  const { openModal, closeModal } = useModal();
+
   const getAvatar = () => {
     return entry.avatar
       ? entry.avatar
       : `https://ui-avatars.com/api/?name=${entry.firstName}+${entry.lastName}`;
+  };
+
+  const stipHtml = (html) => {
   };
 
   return (
@@ -16,13 +22,12 @@ const Entry = ({ entry, focused, setFocusedEntry, editMode }) => {
       </div>
       <div className="description-container">
         <div className="entry__name">{entry.firstName} {entry.lastName}</div>
-        <div className="entry__header">{entry.header || entry.details}</div>
+        <div className="entry__header">{(entry.header || entry.details).replace(/<[^>]*>?/gm, '')}</div>
       </div>
       { editMode && (
         <div className="entry__controls">
-          <div className="entry__edit-btn"><FiEdit /></div>
-          
-          <div className="entry__delete-btn"><FiTrash2 /></div>
+          <div className="entry__edit-btn" onClick={() => openModal()}><FiEdit /></div>
+          <div className="entry__delete-btn" onClick={() => closeModal()}><FiTrash2 /></div>
         </div>
       )}
     </div>

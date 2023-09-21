@@ -17,15 +17,15 @@ const EntryList = ({ focusedEntry, setFocusedEntry, editMode }) => {
 
   const fetchEntries = async () => {
     await getDocs(collection(db, "entries")).then((data) => {
-      // const entries = data.docs.map((doc) => {
-      //   return {
-      //     id: doc.id,
-      //     ...doc.data(),
-      //   };
-      // })
-      // .sort(byLastName);
+      const entries = data.docs.map((doc) => {
+        return {
+          id: doc.id,
+          ...doc.data(),
+        };
+      })
+      .sort(byLastName);
 
-      const entries = testData.sort(byLastName);
+      // const entries = testData.sort(byLastName);
 
       setEntries(entries);
       setAllEntries(entries);
