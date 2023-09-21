@@ -1,3 +1,4 @@
+import parse from "html-react-parser";
 import "./FocusedEntry.css";
 
 const FocusedEntry = ({ focusedEntry }) => {
@@ -21,7 +22,7 @@ const FocusedEntry = ({ focusedEntry }) => {
           </div>
           <div className="focused-entry__details">
             <div className="focused-entry__details-title">About</div>
-            {focusedEntry.details}
+            {parse(focusedEntry.details?.replace(/(<br>)/gm, ''))}
           </div>
         </>
       ) : (

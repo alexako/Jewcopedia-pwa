@@ -13,6 +13,7 @@ import {
 } from "firebase/auth";
 import * as firebaseui from "firebaseui";
 import "firebaseui/dist/firebaseui.css";
+import { getStorage } from "firebase/storage";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -36,6 +37,7 @@ const analytics = getAnalytics(app);
 
 const db = getFirestore(app);
 const auth = getAuth(app);
+const storage = getStorage(app);
 
 const ui = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(auth);
 
@@ -88,6 +90,7 @@ const logout = () => {
 export {
   auth,
   db,
+  storage,
   ui,
   logInWithEmailAndPassword,
   registerWithEmailAndPassword,
