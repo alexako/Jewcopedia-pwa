@@ -129,6 +129,7 @@ const AddEntry = ({ entry, setModalIsOpen }) => {
       alert(error);
     } finally {
       setLoading(false);
+      entry && setModalIsOpen(false);
     }
   };
 
@@ -177,10 +178,10 @@ const AddEntry = ({ entry, setModalIsOpen }) => {
         <Editor
           apiKey="avbdit00bu7iy19p28m9904hg1qg2v963s1qfcs32ks02hau"
           onInit={(evt, editor) => (editorRef.current = editor)}
-          initialValue={details || "<p>This is the initial content of the entry.</p>"}
           value={details}
           onEditorChange={(e) => setDetails(e)}
           init={{
+            placeholder: "Enter a description for this entry.",
             menubar: false,
             plugins: [
               "advlist",

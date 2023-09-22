@@ -26,26 +26,42 @@ input[type="text"]:focus {
   background-color: #fff;
 }
 
-.search {
+.search-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 1em;
   position: sticky;
   top: -1px;
+  border-bottom: 1px solid #ebebeb;
+  background-color: #fff;
+}
+
+.search {
+  position: relative;
   padding: 1.5em 2em;
   background-color: #fff;
+  width: 100%;
+  max-width: 300px;
 }
 
 .search__clear-btn {
   position: absolute;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI';
-  top: 20px;
-  right: 15px;
+  top: 25px;
+  right: 23px;
   border: none;
   color: #7e7e7e;
   cursor: pointer;
-  font-size: 1.25em;
   padding: 0.25em;
 }
 
 .entry-list {
   height: 100%;
-  border-top: 1px solid #ebebeb;
+}
+
+.entry-count {
+  font-weight: 700;
+  padding-right: 1em;
 }
