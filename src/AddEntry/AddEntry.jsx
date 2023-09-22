@@ -129,7 +129,7 @@ const AddEntry = ({ entry, setModalIsOpen }) => {
       alert(error);
     } finally {
       setLoading(false);
-      setModalIsOpen(false);
+      entry && setModalIsOpen(false);
     }
   };
 
