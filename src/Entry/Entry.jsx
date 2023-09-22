@@ -19,7 +19,7 @@ const Entry = ({ entry, focused, setFocusedEntry, editMode }) => {
     const confirmed = window.confirm(`Are you sure you want to delete ${entry.firstName} ${entry.lastName}?`);
 
     if (confirmed) {
-      await deleteDoc(doc(db, "cities", "DC"));
+      await deleteDoc(doc(db, "entries", entry.id));
       alert("Entry deleted successfully");
       console.log("Entry deleted successfully")
     }
