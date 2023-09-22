@@ -1,6 +1,6 @@
 {
   "name": "jewcopedia-pwa",
-  "version": "0.13.0",
+  "version": "0.13.1",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
@@ -10,6 +10,7 @@
     "firebase": "^10.1.0",
     "firebaseui": "^6.1.0",
     "html-react-parser": "^4.2.2",
+    "html-to-react": "^1.6.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.3",

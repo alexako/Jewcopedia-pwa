@@ -1,7 +1,7 @@
 import React, { useMemo, useRef, useState } from "react";
 import { doc, setDoc } from "firebase/firestore";
 import { db, storage } from "../firebase";
-import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
+import { ref, getDownloadURL, uploadBytes, uploadBytesResumable } from "firebase/storage";
 import { useDropzone } from "react-dropzone";
 import { Editor } from "@tinymce/tinymce-react";
 
@@ -90,33 +90,25 @@ const AddEntry = ({ entry, setModalIsOpen }) => {
 
       const entryId =  entry?.id || `${lastName}_${firstName}-${Date.now()}`;
       const storageRef = ref(storage, `avatars/${entryId}`);
-      const uploadTask = uploadBytesResumable(storageRef, avatar);
 
       console.log("uploading file...");
 
-      await uploadTask.on("state_changed",
-        (snapshot) => {
-          const progress =
-            Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-          setProgresspercent(progress);
-        },
-        (error) => {
-          alert(error);
-        },
-        () => {
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            setAvatar(downloadURL);
-            console.log("upload complete:", avatar);
-          });
-        }
-      );
+      const uploadedBytes = await uploadBytes(storageRef, avatar);
+      console.log("uploadedBytes:", uploadedBytes);
+      const downloadUrl = await getDownloadURL(storageRef);
+      console.log("downloadUrl:", downloadUrl);
 
-      await setDoc(doc(db, "entries", entryId), {
+      const data = {
         firstName,
         lastName,
         details,
-        avatar,
-      });
+        avatar: downloadUrl,
+      }
+
+      console.log("data:", data);
+
+      await setDoc(doc(db, "entries", entryId), data);
+
       alert("Entry added successfully");
       setFirstName("");
       setLastName("");
@@ -131,6 +123,7 @@ const AddEntry = ({ entry, setModalIsOpen }) => {
       setLoading(false);
       entry && setModalIsOpen(false);
     }
+    console.groupEnd();
   };
 
   return (
