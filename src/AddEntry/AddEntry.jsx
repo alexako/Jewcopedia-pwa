@@ -8,6 +8,7 @@ import { Editor } from "@tinymce/tinymce-react";
 const AddEntry = ({ entry, setModalIsOpen }) => {
   const [firstName, setFirstName] = useState(entry?.firstName || "");
   const [lastName, setLastName] = useState(entry?.lastName || "");
+  const [header, setHeader] = useState(entry?.header || "" );
   const [details, setDetails] = useState(entry?.details || "");
   const [avatar, setAvatar] = useState(entry?.avatar || null);
   const [image, setImage] = useState(null);
@@ -94,22 +95,26 @@ const AddEntry = ({ entry, setModalIsOpen }) => {
 
       const entryId =  entry?.id || `${lastName}_${firstName}-${Date.now()}`;
       const storageRef = ref(storage, `avatars/${entryId}`);
+      let downloadUrl;
 
-      const uploadedBytes = await uploadBytes(storageRef, image, { contentType: "image/jpeg"})
-      console.log("uploadedBytes:", uploadedBytes);
-      const downloadUrl = await getDownloadURL(uploadedBytes.ref);
-      console.log("downloadUrl:", downloadUrl);
+      if (image) {
+        const uploadedBytes = await uploadBytes(storageRef, image, { contentType: "image/jpeg"})
+        console.log("uploadedBytes:", uploadedBytes);
+        downloadUrl = await getDownloadURL(uploadedBytes.ref);
+        console.log("downloadUrl:", downloadUrl);
+      }
 
       const data = {
         firstName,
         lastName,
+        header,
         details,
-        avatar: downloadUrl,
+        ...(image && { avatar: downloadUrl}),
       }
 
       console.log("data:", data);
 
-      const saved = await setDoc(doc(db, "entries", entryId), data);
+      const saved = await setDoc(doc(db, "entries", entryId), data, { merge: true });
       console.log("saved:", saved);
 
       alert("Entry added successfully");
@@ -136,12 +141,14 @@ const AddEntry = ({ entry, setModalIsOpen }) => {
       {!entry && !loading && !error && (
         <div className="add-entry-container__header" onClick={() => setShowForm(!showForm)}>Add Entry</div>
       )}
-      <form className={showForm ? 'show-form' : ''} onSubmit={onSubmit}>
-        <div className="form-group">
+      <form className={showForm ? 'show-form' : ''} onSubmit={onSubmit} style={{ flex: 1, justifyContent: "space-between"}}>
+        <div className="form-group" style={{ flex: 1, flexDirection: "column" }}>
+          <div className="form-group">
+
           <div {...getRootProps({style})}>
-        <input {...getInputProps()} />
-        <p>Drag 'n' drop an image here, or click to select an image</p>
-      </div>
+            <input {...getInputProps()} />
+            <p>Drag 'n' drop an image here, or click to select an image</p>
+          </div>
           {
             !avatar &&
             <div className='outerbar'>
@@ -169,6 +176,15 @@ const AddEntry = ({ entry, setModalIsOpen }) => {
             value={lastName}
             onChange={(e) => setLastName(e.currentTarget.value)}
             required
+          />
+        </div>
+        <div className="form-group">
+          <input
+            type="text"
+            placeholder="Header"
+            name="header"
+            value={header}
+            onChange={(e) => setHeader(e.currentTarget.value)}
           />
         </div>
         <Editor
@@ -209,6 +225,7 @@ const AddEntry = ({ entry, setModalIsOpen }) => {
               "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
           }}
         />
+        </div>
         <div className="form-group">
           <button type="submit">{ entry ? "Save" : "Add" }</button>
           { entry && <button type="button" onClick={() => setModalIsOpen(false)}>Cancel</button> }
