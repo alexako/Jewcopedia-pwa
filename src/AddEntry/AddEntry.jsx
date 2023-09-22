@@ -10,6 +10,7 @@ const AddEntry = ({ entry, setModalIsOpen }) => {
   const [lastName, setLastName] = useState(entry?.lastName || "");
   const [details, setDetails] = useState(entry?.details || "");
   const [avatar, setAvatar] = useState(entry?.avatar || null);
+  const [image, setImage] = useState(null);
   const [progresspercent, setProgresspercent] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -25,10 +26,13 @@ const AddEntry = ({ entry, setModalIsOpen }) => {
   } = useDropzone({    
     maxFiles:1,
     accept: {
-      'image/*': [],
+      'image/jpg': [],
+      'image/jpeg': [],
+      'image/png': [],
     },
     onDrop: acceptedFiles => {
       setAvatar(URL.createObjectURL(acceptedFiles.at(0)));
+      setImage(acceptedFiles.at(0));
     }
   });
 
@@ -91,11 +95,9 @@ const AddEntry = ({ entry, setModalIsOpen }) => {
       const entryId =  entry?.id || `${lastName}_${firstName}-${Date.now()}`;
       const storageRef = ref(storage, `avatars/${entryId}`);
 
-      console.log("uploading file...");
-
-      const uploadedBytes = await uploadBytes(storageRef, avatar);
+      const uploadedBytes = await uploadBytes(storageRef, image, { contentType: "image/jpeg"})
       console.log("uploadedBytes:", uploadedBytes);
-      const downloadUrl = await getDownloadURL(storageRef);
+      const downloadUrl = await getDownloadURL(uploadedBytes.ref);
       console.log("downloadUrl:", downloadUrl);
 
       const data = {
@@ -107,7 +109,8 @@ const AddEntry = ({ entry, setModalIsOpen }) => {
 
       console.log("data:", data);
 
-      await setDoc(doc(db, "entries", entryId), data);
+      const saved = await setDoc(doc(db, "entries", entryId), data);
+      console.log("saved:", saved);
 
       alert("Entry added successfully");
       setFirstName("");
@@ -176,6 +179,7 @@ const AddEntry = ({ entry, setModalIsOpen }) => {
           init={{
             placeholder: "Enter a description for this entry.",
             menubar: false,
+            height: 350,
             plugins: [
               "advlist",
               "autolink",
