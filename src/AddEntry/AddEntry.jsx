@@ -195,7 +195,6 @@ const AddEntry = ({ entry, setModalIsOpen }) => {
           init={{
             placeholder: "Enter a description for this entry.",
             menubar: false,
-            height: 350,
             plugins: [
               "advlist",
               "autolink",

@@ -32,7 +32,7 @@ const Entry = ({ entry, focused, setFocusedEntry, editMode }) => {
       </div>
       <div className="description-container">
         <div className="entry__name">{entry.firstName} {entry.lastName}</div>
-        <div className="entry__header">{(entry.header || entry.details)}</div>
+        <div className="entry__header" dangerouslySetInnerHTML={{ __html: (entry.header || entry.details) }}></div>
       </div>
       { editMode && (
         <div className="entry__controls">
