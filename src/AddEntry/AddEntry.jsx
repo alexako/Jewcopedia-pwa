@@ -1,9 +1,11 @@
 import React, { useMemo, useRef, useState } from "react";
 import { doc, setDoc } from "firebase/firestore";
 import { db, storage } from "../firebase";
-import { ref, getDownloadURL, uploadBytes, uploadBytesResumable } from "firebase/storage";
+import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import { useDropzone } from "react-dropzone";
 import { Editor } from "@tinymce/tinymce-react";
+import { IoCaretForwardSharp } from "react-icons/io5";
+
 
 const AddEntry = ({ entry, setModalIsOpen }) => {
   const [firstName, setFirstName] = useState(entry?.firstName || "");
@@ -12,7 +14,6 @@ const AddEntry = ({ entry, setModalIsOpen }) => {
   const [details, setDetails] = useState(entry?.details || "");
   const [avatar, setAvatar] = useState(entry?.avatar || null);
   const [image, setImage] = useState(null);
-  const [progresspercent, setProgresspercent] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -139,7 +140,12 @@ const AddEntry = ({ entry, setModalIsOpen }) => {
       {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
       {!entry && !loading && !error && (
-        <div className="add-entry-container__header" onClick={() => setShowForm(!showForm)}>Add Entry</div>
+        <div className="add-entry-container__header" onClick={() => setShowForm(!showForm)}>
+          Add Entry
+          <div className={`caret ${showForm && "show"}`}>
+            <IoCaretForwardSharp />
+          </div>
+        </div>
       )}
       <form className={showForm ? 'show-form' : ''} onSubmit={onSubmit} style={{ flex: 1, justifyContent: "space-between"}}>
         <div className="form-group" style={{ flex: 1, flexDirection: "column" }}>
@@ -149,12 +155,6 @@ const AddEntry = ({ entry, setModalIsOpen }) => {
             <input {...getInputProps()} />
             <p>Drag 'n' drop an image here, or click to select an image</p>
           </div>
-          {
-            !avatar &&
-            <div className='outerbar'>
-              <div className='innerbar' style={{ width: `${progresspercent}%` }}></div>
-            </div>
-          }
           {
             avatar &&
             <img src={avatar} alt='uploaded file' height={200} />

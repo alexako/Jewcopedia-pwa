@@ -1,6 +1,4 @@
-import { useState } from "react";
-import { getDocs, collection } from "firebase/firestore";
-import { db } from "../firebase";
+import { useCallback, useState } from "react";
 import EntryList from "../EntryList/EntryList";
 import Header from "../Header/Header";
 import { useAuth, AuthProvider } from "../AuthProvider/AuthProvider";
@@ -10,25 +8,12 @@ import EditEntry from "../EditEntry/EditEntry";
 import { useModal, ModalProvider } from "../AuthProvider/ModalProvider";
 
 const Dashboard = () => {
-  const [entries, setEntries] = useState([]);
-  const [loading, setLoading] = useState(false);
 
-  const fetchEntries = async () => {
-    await getDocs(collection(db, "entries")).then((data) => {
-      const entries = data.docs.map((doc) => {
-        return {
-          id: doc.id,
-          ...doc.data(),
-        };
-      });
-      console.log("entries", entries);
-      setEntries([entries]);
-    });
-  };
+  console.log("rendering... Dashboard.js");
 
   const Dashboard = () => {
     const { user } = useAuth();
-    const { isModalOpen, openModal, closeModal } = useModal();
+    const { isModalOpen, closeModal } = useModal();
 
     if (!user) {
       return <Navigate to="/" />;
@@ -72,7 +57,7 @@ const Dashboard = () => {
           <AddEntry />
         </div>
         <div className="dashboard">
-          <EntryList setFocusedEntry={() => {}} editMode={true} />
+          <EntryList setFocusedEntry={() => {}} editMode />
         </div>
 
         {isModalOpen && <Modal />}

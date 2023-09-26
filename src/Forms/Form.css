@@ -87,14 +87,22 @@ form > textarea {
   justify-content: center;
   align-items: center;
   margin: 1em;
-  padding-bottom: 2em;
-  border-bottom: 1px solid #ebebeb;
 }
 
 .add-entry-container__header {
+  display: flex;
   font-size: 1.5em;
   font-weight: 700;
   cursor: pointer;
+}
+
+.add-entry-container__header > .caret {
+  padding-top: 4px;
+  transition: rotate 0.1s ease-in-out;
+}
+
+.add-entry-container__header > .caret.show {
+  rotate: 90deg;
 }
 
 .add-entry-container__loading {
