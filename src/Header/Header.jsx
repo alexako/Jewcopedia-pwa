@@ -17,8 +17,6 @@ const Header = () => {
 
   const logo = "https://firebasestorage.googleapis.com/v0/b/jewcopedia.appspot.com/o/logo.png?alt=media&token=78ba2d0c-556c-4e82-8c52-40a540769bbc";
 
-  console.log("Rendering Header");
-
   const setUser = (user) => {
     if (user) login(user);
     else logout();

@@ -89,11 +89,6 @@ const AddEntry = ({ entry, setModalIsOpen }) => {
       setLoading(true);
       console.log("avatar:", avatar);
 
-      if (!avatar) {
-        alert("Please select a file to upload");
-        return;
-      }
-
       const entryId =  entry?.id || `${lastName}_${firstName}-${Date.now()}`;
       const storageRef = ref(storage, `avatars/${entryId}`);
       let downloadUrl;
@@ -118,7 +113,7 @@ const AddEntry = ({ entry, setModalIsOpen }) => {
       const saved = await setDoc(doc(db, "entries", entryId), data, { merge: true });
       console.log("saved:", saved);
 
-      alert("Entry added successfully");
+      alert(`Entry ${ entry ? "saved" : "added"} successfully`);
       setFirstName("");
       setLastName("");
       setDetails("");

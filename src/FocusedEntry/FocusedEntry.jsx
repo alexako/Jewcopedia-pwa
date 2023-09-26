@@ -25,7 +25,8 @@ const FocusedEntry = ({ focusedEntry }) => {
           </div>
           <div className="focused-entry__details">
             <div className="focused-entry__details-title">About</div>
-            {parse(focusedEntry.details?.replace(/(<br>)/gm, ''))}
+            {/* {parse(focusedEntry.details)} */}
+            <div dangerouslySetInnerHTML={{ __html: focusedEntry.details }}></div>
           </div>
         </>
       )}
