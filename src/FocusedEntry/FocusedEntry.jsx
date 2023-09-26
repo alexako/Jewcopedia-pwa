@@ -1,3 +1,4 @@
+import ProgressiveImage from "react-progressive-graceful-image";
 import parse from "html-react-parser";
 import "./FocusedEntry.css";
 
@@ -7,14 +8,16 @@ const FocusedEntry = ({ focusedEntry }) => {
 
   return (
     <div className="focused-entry">
-      {focusedEntry ? (
+      {focusedEntry && (
         <>
           <div className="focused-entry__header" style={{ backgroundImage: `url(${backgroundURL})`}}>
-            { focusedEntry.avatar && (
-              <div className="focused-entry__avatar">
-                  <img className="focused-entry__avatar--img" src={focusedEntry.avatar} alt=""/>
-              </div>
-            )}
+            <div className={`focused-entry__avatar ${focusedEntry.avatar ? '' : "focused-entry__avatar--placeholder"}`}>
+              <ProgressiveImage src={focusedEntry.avatar || "logo-192.png"} placeholder="logo-192.png">  
+                {(src, loading) => (
+                  <img className={`focused-entry__avatar--img image${loading ? " loading pulse" : " loaded"}`} src={src} alt="avatar"/>
+                )}
+              </ProgressiveImage>
+            </div>
             <div className="focused-entry__name">
               {focusedEntry.firstName} {focusedEntry.lastName}
               <div className="focused-entry__name--header">{focusedEntry.header}</div>
@@ -22,11 +25,10 @@ const FocusedEntry = ({ focusedEntry }) => {
           </div>
           <div className="focused-entry__details">
             <div className="focused-entry__details-title">About</div>
-            {parse(focusedEntry.details?.replace(/(<br>)/gm, ''))}
+            {/* {parse(focusedEntry.details)} */}
+            <div dangerouslySetInnerHTML={{ __html: focusedEntry.details }}></div>
           </div>
         </>
-      ) : (
-        <div className="focused-entry__unselected">No entry selected</div>
       )}
     </div>
   );

@@ -6,6 +6,7 @@ import Admin from "../Admin/Admin";
 import "./Header.css";
 import { Link, Navigate } from "react-router-dom";
 import { useAuth } from "../AuthProvider/AuthProvider";
+import ProgressiveImage from "react-progressive-graceful-image";
 
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -15,8 +16,6 @@ const Header = () => {
   const { user, login, logout } = useAuth();
 
   const logo = "https://firebasestorage.googleapis.com/v0/b/jewcopedia.appspot.com/o/logo.png?alt=media&token=78ba2d0c-556c-4e82-8c52-40a540769bbc";
-
-  console.log("Rendering Header");
 
   const setUser = (user) => {
     if (user) login(user);
@@ -82,7 +81,14 @@ const Header = () => {
     <div className="header">
       <div className="logo-container">
         <Link to="/">
-          <img className="logo" src={logo} alt="Jewcopedia Logo" />
+          <ProgressiveImage src={logo} placeholder="logo-192.png">  
+            {(src, loading) => (
+              <img className={`logo-container--img ${loading ? " loading" : " loaded"}`} src={src} alt="Jewcopedia Logo"/>
+            )}
+          </ProgressiveImage>
+        </Link>
+        <Link className="header-title" to="/">
+          Jewcopedia
         </Link>
       </div>
       <div className="admin">

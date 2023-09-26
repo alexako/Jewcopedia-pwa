@@ -10,11 +10,12 @@
   background-size: cover;
   background-position: right;
   background-repeat: no-repeat;
+  min-height: 380px;
+  font-family: var(--font-header);
 }
 
 .focused-entry__name {
-  font-weight: 700;
-  font-size: 2em;
+  font-size: 2.5em;
   background-color: #646b5eb0;
   padding: 0.5em;
   color: white;
@@ -29,10 +30,16 @@
 
 .focused-entry__avatar {
   background-color: #646b5eb0;
+  padding: 1em;
+}
+
+.focused-entry__avatar--placeholder {
+  height: 300px;
 }
 
 .focused-entry__avatar--img {
   width: 300px;
+  border-radius: 2%;
 }
 
 .focused-entry__details {
@@ -41,6 +48,7 @@
 }
 
 .focused-entry__details-title {
+  font-family: var(--font-header);
   font-weight: 700;
   font-size: 1.5em;
   margin-bottom: 0.5em;

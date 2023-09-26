@@ -34,10 +34,14 @@
     font-weight: 700;
 }
 
-.entry__header {
+.entry__header > * {
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+}
+
+.entry__header > *:not(:first-child) {
+    display: none;
 }
 
 .entry__controls {
