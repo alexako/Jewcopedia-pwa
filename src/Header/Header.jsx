@@ -83,13 +83,15 @@ const Header = () => {
     <div className="header">
       <div className="logo-container">
         <Link to="/">
-        <ProgressiveImage src={logo} placeholder="logo-192.png">  
-          {(src, loading) => (
-            <img className={`logo-container--img image${loading ? " loading" : " loaded"}`} src={src} alt="Jewcopedia Logo"/>
-          )}
-        </ProgressiveImage>
+          <ProgressiveImage src={logo} placeholder="logo-192.png">  
+            {(src, loading) => (
+              <img className={`logo-container--img ${loading ? " loading" : " loaded"}`} src={src} alt="Jewcopedia Logo"/>
+            )}
+          </ProgressiveImage>
         </Link>
-        <div className="header-title">Jewcopedia</div>
+        <Link className="header-title" to="/">
+          Jewcopedia
+        </Link>
       </div>
       <div className="admin">
         {

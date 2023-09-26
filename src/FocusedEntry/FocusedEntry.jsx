@@ -12,9 +12,9 @@ const FocusedEntry = ({ focusedEntry }) => {
         <>
           <div className="focused-entry__header" style={{ backgroundImage: `url(${backgroundURL})`}}>
             <div className={`focused-entry__avatar ${focusedEntry.avatar ? '' : "focused-entry__avatar--placeholder"}`}>
-              <ProgressiveImage src={focusedEntry.avatar} placeholder={`https://ui-avatars.com/api/?name=${focusedEntry.firstName}+${focusedEntry.lastName}`}>  
+              <ProgressiveImage src={focusedEntry.avatar || "logo-192.png"} placeholder="logo-192.png">  
                 {(src, loading) => (
-                  <img className={`focused-entry__avatar--img image${loading ? " loading" : " loaded"}`} src={src} alt="avatar"/>
+                  <img className={`focused-entry__avatar--img image${loading ? " loading pulse" : " loaded"}`} src={src} alt="avatar"/>
                 )}
               </ProgressiveImage>
             </div>
