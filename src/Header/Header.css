@@ -17,6 +17,8 @@
   font-weight: 400;
   margin-left: 0.5em;
   text-transform: capitalize;
+  text-decoration: none;
+  color: #000;
 }
 
 .logo-container--img {
@@ -106,4 +108,36 @@
 .modal__control-btn:hover {
   background-color: #d3d3d3;
   color: #282c34;
+}
+
+.pulse {
+  animation: pulse 3s infinite;
+  margin: 0 auto;
+  animation-direction: alternate;
+  -webkit-animation-name: pulse;
+  animation-name: pulse;
+}
+    
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.1);
+  }
+  100% {
+    -webkit-transform: scale(1);
+  }
+}
+    
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }

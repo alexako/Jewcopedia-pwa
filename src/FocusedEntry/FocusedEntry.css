@@ -30,6 +30,7 @@
 
 .focused-entry__avatar {
   background-color: #646b5eb0;
+  padding: 1em;
 }
 
 .focused-entry__avatar--placeholder {
@@ -38,6 +39,7 @@
 
 .focused-entry__avatar--img {
   width: 300px;
+  border-radius: 2%;
 }
 
 .focused-entry__details {
