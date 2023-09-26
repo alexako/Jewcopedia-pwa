@@ -6,6 +6,7 @@ import Admin from "../Admin/Admin";
 import "./Header.css";
 import { Link, Navigate } from "react-router-dom";
 import { useAuth } from "../AuthProvider/AuthProvider";
+import ProgressiveImage from "react-progressive-graceful-image";
 
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -82,8 +83,13 @@ const Header = () => {
     <div className="header">
       <div className="logo-container">
         <Link to="/">
-          <img className="logo" src={logo} alt="Jewcopedia Logo" />
+        <ProgressiveImage src={logo} placeholder="logo-192.png">  
+          {(src, loading) => (
+            <img className={`logo-container--img image${loading ? " loading" : " loaded"}`} src={src} alt="Jewcopedia Logo"/>
+          )}
+        </ProgressiveImage>
         </Link>
+        <div className="header-title">Jewcopedia</div>
       </div>
       <div className="admin">
         {

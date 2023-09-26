@@ -1,3 +1,4 @@
+import ProgressiveImage from "react-progressive-graceful-image";
 import parse from "html-react-parser";
 import "./FocusedEntry.css";
 
@@ -7,14 +8,16 @@ const FocusedEntry = ({ focusedEntry }) => {
 
   return (
     <div className="focused-entry">
-      {focusedEntry ? (
+      {focusedEntry && (
         <>
           <div className="focused-entry__header" style={{ backgroundImage: `url(${backgroundURL})`}}>
-            { focusedEntry.avatar && (
-              <div className="focused-entry__avatar">
-                  <img className="focused-entry__avatar--img" src={focusedEntry.avatar} alt=""/>
-              </div>
-            )}
+            <div className={`focused-entry__avatar ${focusedEntry.avatar ? '' : "focused-entry__avatar--placeholder"}`}>
+              <ProgressiveImage src={focusedEntry.avatar} placeholder={`https://ui-avatars.com/api/?name=${focusedEntry.firstName}+${focusedEntry.lastName}`}>  
+                {(src, loading) => (
+                  <img className={`focused-entry__avatar--img image${loading ? " loading" : " loaded"}`} src={src} alt="avatar"/>
+                )}
+              </ProgressiveImage>
+            </div>
             <div className="focused-entry__name">
               {focusedEntry.firstName} {focusedEntry.lastName}
               <div className="focused-entry__name--header">{focusedEntry.header}</div>
@@ -25,8 +28,6 @@ const FocusedEntry = ({ focusedEntry }) => {
             {parse(focusedEntry.details?.replace(/(<br>)/gm, ''))}
           </div>
         </>
-      ) : (
-        <div className="focused-entry__unselected">No entry selected</div>
       )}
     </div>
   );

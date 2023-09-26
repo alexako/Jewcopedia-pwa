@@ -2,6 +2,7 @@ import { useState } from "react";
 import AddEntry from "../AddEntry/AddEntry";
 import { deleteDoc, doc } from "firebase/firestore";
 import { db } from "../firebase";
+import ProgressiveImage from "react-progressive-graceful-image";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 import "./Entry.css";
 
@@ -28,7 +29,11 @@ const Entry = ({ entry, focused, setFocusedEntry, editMode }) => {
   return (
     <div className={`entry ${focused ? 'entry--focused' : ''}`} onClick={() => setFocusedEntry(entry)}>
       <div className="entry__avatar">
-        <img className="entry__avatar--img" src={getAvatar()} alt=""/>
+        <ProgressiveImage src={getAvatar()} placeholder={`https://ui-avatars.com/api/?name=${entry.firstName}+${entry.lastName}`}>  
+          {(src, loading) => (
+            <img className={`entry__avatar--img image${loading ? " loading" : " loaded"}`} src={src} alt="avatar"/>
+          )}
+        </ProgressiveImage>
       </div>
       <div className="description-container">
         <div className="entry__name">{entry.firstName} {entry.lastName}</div>
