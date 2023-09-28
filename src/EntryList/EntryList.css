@@ -1,7 +1,6 @@
 .sidebar {
   display: flex;
   flex-direction: column;
-  height: 100vh;
   overflow-y: auto;
   order: 1;
   flex-shrink: 0;
@@ -58,7 +57,7 @@ input[type="text"]:focus {
 }
 
 .entry-list {
-  height: 100%;
+  flex: 1;
 }
 
 .entry-count {
