@@ -4,7 +4,7 @@ import LoginForm from "../Forms/LoginForm";
 import PasswordResetForm from "../Forms/PasswordResetForm";
 import Admin from "../Admin/Admin";
 import "./Header.css";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../AuthProvider/AuthProvider";
 import ProgressiveImage from "react-progressive-graceful-image";
 
@@ -14,6 +14,8 @@ const Header = () => {
 
 
   const { user, login, logout } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const logo = "https://firebasestorage.googleapis.com/v0/b/jewcopedia.appspot.com/o/logo.png?alt=media&token=78ba2d0c-556c-4e82-8c52-40a540769bbc";
 
@@ -25,7 +27,7 @@ const Header = () => {
   const logOut = () => {
     if (user) {
       logout();
-      return <Navigate to="/" />;
+      navigate("/", { replace: true });
     }
   };
 
@@ -36,6 +38,14 @@ const Header = () => {
   const closeModal = () => {
     setIsModalOpen(false);
     setCurrentState(user ? "admin" : "initialState");
+  };
+
+  const handleNavigation = () => {
+    if (!user) return openModal();
+
+    return (location.pathname === "/dashboard") 
+      ? navigate("/", { replace: true })
+      : login(user);
   };
 
   const InitialState = () => (
@@ -92,15 +102,9 @@ const Header = () => {
         </Link>
       </div>
       <div className="admin">
-        {
-          user
-          ?  <div className="admin-login-btn" id="openModal" onClick={() => login(user)}>
-            Dashboard
-          </div>
-          : <div className="admin-login-btn" id="openModal" onClick={openModal}>
-            Admin Login
-          </div>
-        }
+        <div className="admin-login-btn" id="openModal" onClick={handleNavigation}>
+          { location.pathname === "/dashboard" ? "Back to Home" : user ? "Dashboard" : "Admin" }
+        </div>
         <div className="admin-login-btn" id="openModal" onClick={logOut}>
           {user && "Logout"}
         </div>

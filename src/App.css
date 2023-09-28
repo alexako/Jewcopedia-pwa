@@ -54,7 +54,7 @@ body {
 .container {
   display: flex;
   flex-direction: row;
-  height: 100%;
+  height: calc(100vh - 78px);
   width: 100%;
 }
 
@@ -64,7 +64,6 @@ body {
   border-left: 1px solid #ebebeb;
   order: 2;
   flex-grow: 1;
-  height: 100vh;
   overflow-y: auto;
 }
 
