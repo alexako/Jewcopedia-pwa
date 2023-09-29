@@ -4,8 +4,6 @@ import AddEntry from "../AddEntry/AddEntry";
 const EditModal = () => {
   const { isModalOpen, openModal, closeModal } = useModal();
 
-  console.log("rendering editModal");
-
   const setModalIsOpen = (isOpen) => {
     isOpen ? openModal() : closeModal();
   };
