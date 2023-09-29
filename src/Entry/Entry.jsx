@@ -36,7 +36,7 @@ const Entry = ({ entry, focused, setFocusedEntry, editMode }) => {
         </ProgressiveImage>
       </div>
       <div className="description-container">
-        <div className="entry__name">{entry.firstName} {entry.lastName}</div>
+        <div className="entry__name">{[entry.firstName, entry.lastName].join(" ")}</div>
         <div className="entry__header" dangerouslySetInnerHTML={{ __html: (entry.header || entry.details) }}></div>
       </div>
       { editMode && (
