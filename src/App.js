@@ -1,31 +1,34 @@
-import React, { useState } from "react";
+import React, { createContext, useState } from "react";
 import EntryList from "./EntryList/EntryList";
 import FocusedEntry from "./FocusedEntry/FocusedEntry";
 import "./App.css";
 import Header from "./Header/Header";
-import { AuthProvider } from "./AuthProvider/AuthProvider";
 import { ModalProvider } from "./AuthProvider/ModalProvider";
+import { AuthProvider } from "./AuthProvider/AuthProvider";
+import { DashboardProvider } from "./AuthProvider/DashboardProvider";
 
 function App() {
   const [focusedEntry, setFocusedEntry] = useState(null);
 
   return (
-    <AuthProvider>
-      <ModalProvider>
-        <div className="App">
+    <ModalProvider>
+      <div className="App">
+        <AuthProvider>
           <Header />
-          <div className="container">
+        </AuthProvider>
+        <div className="container">
+          <DashboardProvider>
             <EntryList
               focusedEntry={focusedEntry}
               setFocusedEntry={setFocusedEntry}
             />
-            <div className="main">
-              <FocusedEntry focusedEntry={focusedEntry} />
-            </div>
+          </DashboardProvider>
+          <div className="main">
+            <FocusedEntry focusedEntry={focusedEntry} />
           </div>
         </div>
-      </ModalProvider>
-    </AuthProvider>
+      </div>
+    </ModalProvider>
   );
 }
 

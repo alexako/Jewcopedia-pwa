@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
+import { useModal } from "../AuthProvider/ModalProvider";
 import Entry from "../Entry/Entry";
 import "./EntryList.css";
 import testData from "../data.json";
@@ -11,6 +12,8 @@ const EntryList = ({ focusedEntry, setFocusedEntry, editMode }) => {
   const [allEntries, setAllEntries] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(true);
+  const { isModalOpen } = useModal();
+
 
   const byLastName = (a, b) => {
     return a.lastName < b.lastName ? -1 : 1;
@@ -36,7 +39,7 @@ const EntryList = ({ focusedEntry, setFocusedEntry, editMode }) => {
 
   useEffect(() => {
     fetchEntries();
-  }, []);
+  }, [isModalOpen]);
 
   useEffect(() => {
     if (!searchQuery) {
@@ -72,8 +75,8 @@ const EntryList = ({ focusedEntry, setFocusedEntry, editMode }) => {
           { editMode && <div className="entry-count">{`${entries.length} entries found`}</div> }
         </div>
         <div className="entry-list">
-          {entries.map((entry, index) => (
-            <Entry key={index}
+          {entries.map((entry) => (
+            <Entry key={entry.id}
               entry={entry}
               focused={entry.id === focusedEntry?.id}
               setFocusedEntry={setFocusedEntry}

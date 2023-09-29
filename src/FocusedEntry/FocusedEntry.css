@@ -17,12 +17,12 @@
 
 .focused-entry__name {
   font-size: 2.5em;
-  background-color: #646b5eb0;
   padding: 0.5em;
   color: white;
-  text-align: right;
   transition: all 0.5s ease-in-out;
   text-align: left;
+  text-transform: capitalize;
+  word-spacing: 0.25em;
 }
 
 .focused-entry__name--header{
@@ -30,8 +30,11 @@
 }
 
 .focused-entry__avatar {
-  background-color: #646b5eb0;
-  padding: 1em;
+  margin: 1em;
+  width: 300px;
+  height: 300px;
+  border-radius: 2%;
+  overflow: hidden;
 }
 
 .focused-entry__avatar--placeholder {
@@ -39,7 +42,7 @@
 }
 
 .focused-entry__avatar--img {
-  height: 295px;
+  width: 100%;
   border-radius: 2%;
 }
 

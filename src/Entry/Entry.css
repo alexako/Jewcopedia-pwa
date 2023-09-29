@@ -10,6 +10,11 @@
     color: white;
 }
 
+.entry--focused * {
+    color: white !important;
+    background: none !important;
+}
+
 .description-container {
     display: flex;
     flex-direction: column;
@@ -31,7 +36,12 @@
 
 .entry__name {
     text-align: left;
-    font-weight: 700;
+    font-weight: 500;
+    font-size: 1.15em;
+}
+
+.entry__header * {
+    margin: 0.5em 0 !important;
 }
 
 .entry__header > * {

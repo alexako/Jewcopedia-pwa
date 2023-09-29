@@ -5,12 +5,10 @@ export const ModalContext = createContext(null);
 export const ModalProvider = ({ children }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // call this function when you want to authenticate the user
   const openModal = () => {
     setIsModalOpen(true);
   };
 
-  // call this function to sign out logged in user
   const closeModal = () => {
     setIsModalOpen(false);
   };
