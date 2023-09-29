@@ -1,13 +1,17 @@
-import React, { useMemo, useRef, useState } from "react";
+import React, { useContext, useMemo, useRef, useState } from "react";
+import { useModal } from "../AuthProvider/ModalProvider";
 import { doc, setDoc } from "firebase/firestore";
 import { db, storage } from "../firebase";
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import { useDropzone } from "react-dropzone";
 import { Editor } from "@tinymce/tinymce-react";
 import { IoCaretForwardSharp } from "react-icons/io5";
+import { DashboardContext } from "../AuthProvider/DashboardProvider";
 
 
-const AddEntry = ({ entry, setModalIsOpen }) => {
+const AddEntry = () => {
+  const { selectedEntry: entry } = useContext(DashboardContext);
+
   const [firstName, setFirstName] = useState(entry?.firstName || "");
   const [lastName, setLastName] = useState(entry?.lastName || "");
   const [header, setHeader] = useState(entry?.header || "" );
@@ -18,6 +22,8 @@ const AddEntry = ({ entry, setModalIsOpen }) => {
   const [error, setError] = useState("");
 
   const [showForm, setShowForm] = useState(!!entry);
+
+  const { closeModal } = useModal();
 
   const {
     getRootProps,
@@ -113,19 +119,20 @@ const AddEntry = ({ entry, setModalIsOpen }) => {
       const saved = await setDoc(doc(db, "entries", entryId), data, { merge: true });
       console.log("saved:", saved);
 
-      alert(`Entry ${ entry ? "saved" : "added"} successfully`);
+      alert(`Entry ${ entry ? "saved" : "added"} successfully.`);
       setFirstName("");
       setLastName("");
+      setHeader("");
       setDetails("");
       setAvatar(null);
       setError("");
     } catch (error) {
-      setError("Error adding document: ", error);
+      setError("Error saving document:", error);
       console.error(error);
-      alert(error);
+      alert("Error saving document:", error);
     } finally {
       setLoading(false);
-      entry && setModalIsOpen(false);
+      entry && closeModal();
     }
     console.groupEnd();
   };
@@ -222,7 +229,7 @@ const AddEntry = ({ entry, setModalIsOpen }) => {
         </div>
         <div className="form-group">
           <button type="submit">{ entry ? "Save" : "Add" }</button>
-          { entry && <button type="button" onClick={() => setModalIsOpen(false)}>Cancel</button> }
+          { entry && <button type="button" onClick={() => closeModal()}>Cancel</button> }
         </div>
       </form>
     </>

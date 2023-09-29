@@ -6,11 +6,18 @@ import ErrorPage from './error-page';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { AuthProvider } from './AuthProvider/AuthProvider';
 import Dashboard from './components/Dashboard';
+
+const DashboardProvider = () => (
+  <AuthProvider>
+    <Dashboard />
+  </AuthProvider> 
+);
 
 const router = createBrowserRouter([
   { path: '/', element: <App />, errorElement: <ErrorPage /> },
-  { path: '/dashboard', element: <Dashboard/>, errorElement: <ErrorPage /> },
+  { path: '/dashboard', element: <DashboardProvider />, errorElement: <ErrorPage /> },
 ])
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

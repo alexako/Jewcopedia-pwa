@@ -1,14 +1,20 @@
-import { useState } from "react";
-import AddEntry from "../AddEntry/AddEntry";
 import { deleteDoc, doc } from "firebase/firestore";
 import { db } from "../firebase";
+import { useModal } from "../AuthProvider/ModalProvider";
 import ProgressiveImage from "react-progressive-graceful-image";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 import "./Entry.css";
+import { useDashboard } from "../AuthProvider/DashboardProvider";
 
 const Entry = ({ entry, focused, setFocusedEntry, editMode }) => {
 
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const { openModal } = useModal();
+  const { setEntry } = useDashboard();
+
+  const openEditModal = () => {
+    setEntry(entry);
+    openModal();
+  };
 
   const getAvatar = () => {
     return entry.avatar
@@ -21,7 +27,8 @@ const Entry = ({ entry, focused, setFocusedEntry, editMode }) => {
 
     if (confirmed) {
       await deleteDoc(doc(db, "entries", entry.id));
-      alert("Entry deleted successfully");
+      alert("Entry deleted successfully. Reloading page...");
+      window.location.reload();
       console.log("Entry deleted successfully")
     }
   };
@@ -41,24 +48,11 @@ const Entry = ({ entry, focused, setFocusedEntry, editMode }) => {
       </div>
       { editMode && (
         <div className="entry__controls">
-          <div className="entry__edit-btn" onClick={() => setModalIsOpen(true)}><FiEdit /></div>
+          <div className="entry__edit-btn" onClick={() => openEditModal()}><FiEdit /></div>
           <div className="entry__delete-btn" onClick={() => deleteEntry()}><FiTrash2 /></div>
         </div>
       )}
 
-      { modalIsOpen && (
-        <div className="modal-container">
-          <div className="modal">
-            <div className="modal__header">
-              <div className="modal__header-title">
-                Edit Modal
-              </div>
-              <button className="modal__close-btn" onClick={() => setModalIsOpen(false)}>X</button>
-            </div>
-            <AddEntry entry={entry} setModalIsOpen={setModalIsOpen} />
-          </div>
-        </div>
-      )}
     </div>
   );
 };
