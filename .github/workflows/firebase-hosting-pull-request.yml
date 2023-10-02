@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CI: false
+      FIREBASE_API_KEY: ${{secrets.FIREBASE_API_KEY}}
     steps:
       - uses: actions/checkout@v3
       - run: npm install

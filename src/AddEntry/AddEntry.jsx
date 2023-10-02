@@ -190,7 +190,7 @@ const AddEntry = () => {
           />
         </div>
         <Editor
-          apiKey="avbdit00bu7iy19p28m9904hg1qg2v963s1qfcs32ks02hau"
+          apiKey={process.env.REACT_APP_TINYMCE_API_KEY}
           onInit={(evt, editor) => (editorRef.current = editor)}
           value={details}
           onEditorChange={(e) => setDetails(e)}
