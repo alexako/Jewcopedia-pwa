@@ -25,13 +25,16 @@
 }
 
 .entry__avatar {
+    flex-shrink: 0;
     margin-right: 1em;
-}
-
-.entry__avatar--img {
     height: 55px;
     width: 55px;
     border-radius: 50%;
+    overflow: hidden;
+}
+
+.entry__avatar--img {
+    width: 100%;
 }
 
 .entry__name {

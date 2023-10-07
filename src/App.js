@@ -6,6 +6,7 @@ import Header from "./Header/Header";
 import { ModalProvider } from "./AuthProvider/ModalProvider";
 import { AuthProvider } from "./AuthProvider/AuthProvider";
 import { DashboardProvider } from "./AuthProvider/DashboardProvider";
+import Footer from "./Footer/Footer";
 
 function App() {
   const [focusedEntry, setFocusedEntry] = useState(null);
@@ -27,6 +28,7 @@ function App() {
             <FocusedEntry focusedEntry={focusedEntry} />
           </div>
         </div>
+        <Footer />
       </div>
     </ModalProvider>
   );
