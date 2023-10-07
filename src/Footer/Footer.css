@@ -1,0 +1,28 @@
+.footer {
+  background-color: #fff;
+  height: 30px;
+  padding: 1em;
+  border-top: 1px solid #ebebeb;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+}
+
+.invitation {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.invitation-qr-code {
+  height: 100px;
+  width: 100px;
+  transform: translateY(-35px);
+}
+
+.invitation-qr-code__img {
+  height: 100%;
+  width: 100%;
+}
