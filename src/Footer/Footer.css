@@ -14,15 +14,27 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
+  transform: translateY(5px);
+}
+
+.invitation-message {
+  margin: 0 1em;
 }
 
 .invitation-qr-code {
-  height: 100px;
-  width: 100px;
-  transform: translateY(-35px);
+  height: 50px;
+  width: 50px;
+  transform: translateY(-15px);
 }
 
 .invitation-qr-code__img {
   height: 100%;
   width: 100%;
+}
+
+.version {
+  color: #ebebeb;
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
 }

@@ -114,3 +114,9 @@ form > textarea {
   background-color:rgba(0, 0, 0, 0.6);
   z-index: 1000;
 }
+
+.error {
+  color: red;
+  font-size: 0.8em;
+  margin-top: 0.5em;
+}

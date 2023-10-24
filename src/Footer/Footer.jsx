@@ -3,6 +3,7 @@ import "./Footer.css";
 
 const Footer = () => (
   <div className="footer">
+    <div class="version">{ process.env.REACT_APP_VERSION }</div>
     <div className="invitation">
       <div className="invitation-message">
         Want to nominate someone to the archive? Scan the QR code

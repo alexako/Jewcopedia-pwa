@@ -1,13 +1,24 @@
 import { useState } from "react";
 import { registerWithEmailAndPassword } from "../firebase";
-import "./Form.css";
 import { Navigate } from "react-router-dom";
+import "./Form.css";
+
+const REGISTRATION_CODE = "jewcopedia";
+const DATE_CODE = new Date().toLocaleDateString().split('/').slice(0, 2).join('');
 
 const RegisterForm = ({ setCurrentState, setUser }) => {
   const [registerForm, setRegisterForm] = useState({});
+  const [error, setError] = useState(null);
 
   const register = (e) => {
     e.preventDefault();
+
+    if (registerForm.registrationCode !== REGISTRATION_CODE
+        && registerForm.registrationCode !== DATE_CODE) {
+      setError("Invalid registration code");
+      return;
+    }
+
     registerWithEmailAndPassword(
       registerForm.name,
       registerForm.email,
@@ -19,7 +30,7 @@ const RegisterForm = ({ setCurrentState, setUser }) => {
         setUser(user);
         return <Navigate to="/dashboard" />;
       }
-    });
+    }).finally(setError(null));
   };
 
   return (
@@ -48,6 +59,15 @@ const RegisterForm = ({ setCurrentState, setUser }) => {
           setRegisterForm({ ...registerForm, password: e.currentTarget.value })
         }
       />
+      <input
+        type="text"
+        placeholder="Registration Code"
+        value={registerForm.registrationCode}
+        onChange={(e) =>
+          setRegisterForm({ ...registerForm, registrationCode: e.currentTarget.value })
+        }
+      />
+      { error && <div className="error">{error}</div> }
       <button type="submit" className="submit-btn">Register</button>
     </form>
   );
