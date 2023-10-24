@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { registerWithEmailAndPassword } from "../firebase";
-import "./Form.css";
 import { Navigate } from "react-router-dom";
+import "./Form.css";
 
 const REGISTRATION_CODE = "jewcopedia";
 
