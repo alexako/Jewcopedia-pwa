@@ -3,8 +3,7 @@ import { registerWithEmailAndPassword } from "../firebase";
 import { Navigate } from "react-router-dom";
 import "./Form.css";
 
-const REGISTRATION_CODE = "jewcopedia";
-const DATE_CODE = new Date().toLocaleDateString().split('/').slice(0, 2).join('');
+const REGISTRATION_CODE = "1502";
 
 const RegisterForm = ({ setCurrentState, setUser }) => {
   const [registerForm, setRegisterForm] = useState({});
@@ -13,8 +12,7 @@ const RegisterForm = ({ setCurrentState, setUser }) => {
   const register = (e) => {
     e.preventDefault();
 
-    if (registerForm.registrationCode !== REGISTRATION_CODE
-        && registerForm.registrationCode !== DATE_CODE) {
+    if (registerForm.registrationCode !== REGISTRATION_CODE) {
       setError("Invalid registration code");
       return;
     }
