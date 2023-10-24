@@ -17,6 +17,10 @@
   transform: translateY(5px);
 }
 
+.invitation-message {
+  margin: 0 1em;
+}
+
 .invitation-qr-code {
   height: 50px;
   width: 50px;
