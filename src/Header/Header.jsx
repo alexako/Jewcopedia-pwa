@@ -103,7 +103,7 @@ const Header = () => {
       </div>
       <div className="admin">
         <div className="admin-login-btn" id="openModal" onClick={handleNavigation}>
-          { location.pathname === "/dashboard" ? "Back to Home" : user ? "Dashboard" : "Admin" }
+          { location.pathname === "/dashboard" ? "Back to Home" : user?.uid ? "Dashboard" : "Admin" }
         </div>
         <div className="admin-login-btn" id="openModal" onClick={logOut}>
           {user && "Logout"}
