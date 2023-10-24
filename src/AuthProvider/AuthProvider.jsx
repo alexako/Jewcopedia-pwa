@@ -5,7 +5,7 @@ import { useSessionStorage } from "../hooks/sessionStorage";
 export const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useSessionStorage("user", {});
+  const [user, setUser] = useSessionStorage("user", null);
   const navigate = useNavigate();
 
   // call this function when you want to authenticate the user
