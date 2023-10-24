@@ -31,3 +31,10 @@
   height: 100%;
   width: 100%;
 }
+
+.version {
+  color: #ebebeb;
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+}
